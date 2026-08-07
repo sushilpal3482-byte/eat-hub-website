@@ -60,8 +60,9 @@ section { padding: 60px 0; }
 .floating-wa img { width: 32px; height: 32px; }
 .floating-wa:hover { transform: scale(1.1); }
 
-.floating-call { position: fixed; bottom: 100px; right: 24px; width: 60px; height: 60px; background-color: var(--color-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(27, 27, 24, 0.4); z-index: 9997; transition: transform 0.3s ease; text-decoration: none; }
-.floating-call svg { width: 26px; height: 26px; fill: white; }
+/* FIXED CALL BUTTON COLORS */
+.floating-call { position: fixed; bottom: 100px; right: 24px; width: 60px; height: 60px; background-color: #1B1B18 !important; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(27, 27, 24, 0.4); z-index: 9997; transition: transform 0.3s ease; text-decoration: none; }
+.floating-call svg { width: 26px; height: 26px; fill: #ffffff !important; }
 .floating-call:hover { transform: scale(1.1); }
 
 /* FLOATING CART STYLES */

@@ -45,6 +45,7 @@ const siteData = {
         { name: "Jalebi (100g)", nameHi: "जलेबी", price: 25, desc: "Hot, crispy, and sweet.", image: "images/JALEBI.jpeg" },
         { name: "Vada Pav (2 pcs)", nameHi: "वड़ा पाव", price: 20, desc: "Classic street-style Vada Pav.", image: "images/VADA%20PAV.jpeg" },
         { name: "Samosa (1 pc)", nameHi: "समोसा", price: 10, desc: "Crispy potato pastry.", image: "images/SAMOSA-PAV.jpeg" },
+        { name: "Samosa Pav", nameHi: "समोसा पाव", price: 15, desc: "Crispy samosa served inside a soft bread roll with chutneys.", image: "images/SAMOSA-PAV.jpeg" },
         { name: "Samosa Bucket (7 pcs)", nameHi: "समोसा बकेट", price: 60, desc: "Perfect for sharing.", image: "images/SAMOSA%20BUCKET.png" },
         { name: "Cutlet (1 pc)", nameHi: "कटलेट", price: 15, desc: "Crispy vegetable cutlet.", image: "images/BREAD%20CUTLET.jpeg" }
       ]
@@ -80,6 +81,7 @@ const siteData = {
       category: "Evening Snacks",
       daypart: "eveningSnacks",
       items: [
+        { name: "Samosa Pav", nameHi: "समोसा पाव", price: 15, desc: "Crispy samosa served inside a soft bread roll with chutneys.", image: "images/SAMOSA-PAV.jpeg" },
         { name: "Samosa Bucket (7 pcs)", nameHi: "समोसा बकेट", price: 60, desc: "Crispy hot samosas for evening tea.", image: "images/SAMOSA%20BUCKET.png" },
         { name: "Aloo Paratha", nameHi: "आलू पराठा", price: 51, desc: "Served with green chutney and raita.", image: "images/ALOO%20PARATHA.jpeg" },
         { name: "Pyaaz Paratha", nameHi: "प्याज़ पराठा", price: 59, desc: "Served with green chutney and raita.", image: "images/ALOO%20PARATHA.jpeg" },

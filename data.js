@@ -1,4 +1,3 @@
-// data.js
 const siteData = {
   restaurant: {
     name: "Eat Hub",
@@ -7,7 +6,7 @@ const siteData = {
     whatsappNumber: "919737786796", 
     address: "Prayagraj Hotel, 526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu",
     googleMapsLink: "https://maps.app.goo.gl/U4zJzJzJzJzJzJzJz", 
-    location: { lat: 20.2741, lng: 73.0083 }, // Update these coordinates for exact GPS precision
+    location: { lat: 20.2741, lng: 73.0083 },
     rating: 4.8,
     ratingCount: 124
   },

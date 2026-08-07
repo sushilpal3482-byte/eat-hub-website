@@ -77,8 +77,10 @@ function renderFeaturedMenu() {
         const waMsg = encodeURIComponent(`Hi Eat Hub! I would like to order: ${item.name} (₹${item.price})`);
         const waLink = `https://wa.me/${siteData.restaurant.whatsappNumber}?text=${waMsg}`;
 
+        // Insert image at the top if it exists
         html += `
             <div class="menu-card">
+                ${item.image ? `<img src="${item.image}" alt="${item.name}" class="menu-item-photo">` : ''}
                 <div class="card-compartment">
                     <div class="price-badge">₹${item.price}</div>
                 </div>
@@ -175,7 +177,6 @@ function initOffersScroll() {
     }
 }
 
-// --- NEW BULK ORDER LOGIC ---
 let flatMenu = [];
 let bulkOrderState = [];
 
@@ -183,7 +184,6 @@ function initBulkMenu() {
     flatMenu = [];
     siteData.menu.forEach(category => {
         category.items.forEach(item => {
-            // Check if item already exists in the flat menu to avoid duplicates
             if (!flatMenu.find(i => i.name === item.name)) {
                 flatMenu.push(item);
             }
@@ -193,8 +193,7 @@ function initBulkMenu() {
 
 function openBulkModal() {
     if (flatMenu.length === 0) initBulkMenu();
-    // Start with one empty row showing the first item
-    bulkOrderState = [{ itemName: flatMenu[0].name, qty: 10 }]; // Defaulting to 10 for bulk!
+    bulkOrderState = [{ itemName: flatMenu[0].name, qty: 10 }];
     renderBulkRows();
     document.getElementById('bulk-modal').style.display = 'flex';
 }
@@ -273,7 +272,6 @@ function sendBulkOrder() {
     closeBulkModal();
 }
 
-// Initialize everything when the DOM loads
 document.addEventListener('DOMContentLoaded', () => {
     updateStatus();
     setInterval(updateStatus, 60000);

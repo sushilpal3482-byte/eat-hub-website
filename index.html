@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html">
+                <!-- LOGO SIZE FIXED HERE -->
                 <img src="EATHUB%20LOGO.png" alt="Eat Hub Logo" style="height: 70px; width: auto; object-fit: contain;">
             </a>
             <div class="nav-links">
@@ -23,8 +25,10 @@
         </div>
     </nav>
 
+    <!-- Sunday Special Banner -->
     <div id="sunday-banner" style="display: none; background: var(--color-mustard); text-align: center; padding: 12px; font-weight: 700; font-family: var(--font-heading); font-size: 1.1rem;"></div>
 
+    <!-- Hero Section -->
     <section class="bg-alt">
         <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
             <div style="flex: 1; min-width: 300px;">
@@ -39,11 +43,13 @@
             </div>
             
             <div style="flex: 1; min-width: 300px; text-align: center;">
+                <!-- THALI IMAGE FIXED HERE -->
                 <img src="VEG%20THALI.jpeg" alt="Delicious North Indian Thali" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
             </div>
         </div>
     </section>
 
+    <!-- Top Offers Today Slider -->
     <section class="offers-section">
         <div class="container">
             <div class="offers-header">
@@ -56,11 +62,13 @@
             
             <div class="offers-track-container">
                 <div class="offers-track" id="offers-track">
+                    
                     <a href="menu.html" class="offer-card">
                         <div class="offer-title">THALI</div>
                         <div class="offer-price">₹149</div>
                         <div class="offer-image-container">
-                            <img src="https://images.unsplash.com/photo-1626779848529-577d6ee2cdd3?auto=format&fit=crop&w=300&q=80" alt="Thali">
+                            <!-- USING YOUR UPLOADED THALI IMAGE -->
+                            <img src="VEG%20THALI.jpeg" alt="Thali">
                         </div>
                     </a>
                     
@@ -84,7 +92,8 @@
                         <div class="offer-title">PANEER</div>
                         <div class="offer-price">₹169</div>
                         <div class="offer-image-container">
-                            <img src="https://images.unsplash.com/photo-1631452180519-c014fe946bc0?auto=format&fit=crop&w=300&q=80" alt="Paneer Thali">
+                            <!-- UPLOAD A PHOTO NAMED PANEER.jpeg TO GITHUB TO MAKE THIS WORK -->
+                            <img src="PANEER.jpeg" alt="Paneer Thali">
                         </div>
                     </a>
 
@@ -109,6 +118,7 @@
         </div>
     </section>
 
+    <!-- Delivery Zone Checker -->
     <section id="delivery-section" class="container">
         <h2 style="text-align: center; margin-bottom: 32px; font-size: 2.2rem;">Delivery Zones</h2>
         <div style="background: white; padding: 40px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); text-align: center; max-width: 800px; margin: 0 auto;">
@@ -133,6 +143,7 @@
         </div>
     </section>
 
+    <!-- Featured Menu (Lunch & Bowls) -->
     <section class="bg-alt">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 8px; font-size: 2.2rem;">Today's Lunch Thali</h2>
@@ -141,6 +152,7 @@
         </div>
     </section>
 
+    <!-- Customer Feedback & Ratings Section -->
     <section class="container" style="text-align: center;">
         <h2 style="font-size: 2.2rem; margin-bottom: 8px;">What Our Neighbors Say</h2>
         <p style="color: #555; margin-bottom: 12px;">Loved by families and businesses across Dadra and Nagar Haveli.</p>
@@ -169,6 +181,7 @@
         </div>
     </section>
 
+    <!-- Why Eat Hub -->
     <section class="bg-alt" style="text-align: center;">
         <div class="container">
             <h2 style="margin-bottom: 40px; font-size: 2.2rem;">Why Eat Hub?</h2>
@@ -197,7 +210,8 @@
         </div>
     </section>
 
-    <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
+    <!-- Footer -->
+    <footer style="background-color: var(--color-black); color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
             <!-- Footer logo color inverted so it pops against black background -->
             <img src="EATHUB%20LOGO.png" alt="Eat Hub" style="height: 60px; width: auto; object-fit: contain; filter: invert(1) brightness(100); margin-bottom: 16px;">
@@ -207,6 +221,7 @@
         </div>
     </footer>
 
+    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/919737786796?text=Hi!%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="floating-wa">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>

@@ -11,7 +11,6 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html">
-                <!-- LOGO SIZE INCREASED TO 100px HERE -->
                 <img src="images/EATHUB%20LOGO.png" alt="Eat Hub Logo" style="height: 100px; width: auto; object-fit: contain;">
             </a>
             <div class="nav-links">
@@ -29,7 +28,6 @@
             <h1 style="text-align: center; font-size: 2.8rem; margin-bottom: 40px;">Get in Touch</h1>
             
             <div style="display: flex; flex-wrap: wrap; gap: 40px; background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); overflow: hidden;">
-                
                 <div style="flex: 1; min-width: 300px; padding: 40px;">
                     <h2 style="font-size: 1.8rem; margin-bottom: 24px; color: var(--color-green-dark);">Kitchen Details</h2>
                     
@@ -46,16 +44,6 @@
                             <li><strong>Evening Snacks:</strong> 04:00 PM - 07:00 PM</li>
                             <li><strong>Dinner Thali:</strong> 07:30 PM - 10:30 PM</li>
                         </ul>
-                    </div>
-
-                    <div style="margin-bottom: 32px;">
-                        <h3 style="font-size: 1.2rem; margin-bottom: 4px;">🛵 Delivery Zones</h3>
-                        <p style="color: #555; line-height: 1.5;">Khadoli (Free), Khanvel, & Rakholi.<br><em>Note: Minimum order ₹200 for Morning & Evening snacks.</em></p>
-                    </div>
-
-                    <div style="display: flex; flex-direction: column; gap: 16px;">
-                        <a href="https://wa.me/919737786796?text=Hi!%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="btn btn-primary" style="background-color: var(--color-whatsapp); color: white;">Message on WhatsApp</a>
-                        <a href="https://maps.app.goo.gl/U4zJzJzJzJzJzJzJz" target="_blank" class="btn btn-outline">Get Directions</a>
                     </div>
                 </div>
 
@@ -74,19 +62,42 @@
         </div>
     </section>
 
+    <!-- NEW NORMAL CART MODAL -->
+    <div id="cart-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Order</h2>
+                <button class="close-btn" onclick="closeCartModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items-container"></div>
+                <div style="margin-top: 24px; padding-top: 16px; border-top: 2px dashed #ddd; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="font-size: 1.4rem;">Total:</h3>
+                    <h3 style="font-size: 1.8rem; color: var(--color-green-dark);" id="cart-modal-total">₹0</h3>
+                </div>
+                <p id="cart-warning" style="color: var(--color-maroon); font-size: 0.95rem; margin-top: 12px; display: none; font-weight: 700;">* Minimum order is ₹200 when purchasing snacks. Please add more items.</p>
+            </div>
+            <div class="modal-footer" style="margin-top: 24px;">
+                <button class="btn btn-primary" style="width: 100%; background-color: var(--color-whatsapp); color: white; border: none;" onclick="checkoutCart()">Checkout via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING CART BUTTON -->
+    <div id="floating-cart" class="floating-cart" onclick="openCartModal()">
+        <div class="cart-icon">🛒 <span id="cart-qty" class="cart-badge">0</span></div>
+        <div class="cart-info">View Cart <span id="cart-total">₹0</span></div>
+    </div>
+    <div id="toast" class="toast">Added to cart!</div>
+
     <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
-            <!-- FOOTER LOGO INCREASED TO 90px -->
             <img src="images/EATHUB%20LOGO.png" alt="Eat Hub" style="height: 90px; width: auto; object-fit: contain; filter: invert(1) brightness(100); margin-bottom: 16px;">
             <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>
             <p style="color: #aaa; font-size: 0.9rem;">526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu</p>
             <p style="margin-top: 32px; color: #666; font-size: 0.8rem;">© 2026 Eat Hub. All rights reserved.</p>
         </div>
     </footer>
-
-    <a href="https://wa.me/919737786796?text=Hi!%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="floating-wa">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
 
     <script src="data.js"></script>
     <script src="app.js"></script>

@@ -11,7 +11,6 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html">
-                <!-- LOGO SIZE INCREASED TO 100px HERE -->
                 <img src="images/EATHUB%20LOGO.png" alt="Eat Hub Logo" style="height: 100px; width: auto; object-fit: contain;">
             </a>
             <div class="nav-links">
@@ -142,35 +141,37 @@
         </div>
     </section>
 
-    <section class="container" style="text-align: center;">
-        <h2 style="font-size: 2.2rem; margin-bottom: 8px;">What Our Neighbors Say</h2>
-        <p style="color: #555; margin-bottom: 12px;">Loved by families and businesses across Dadra and Nagar Haveli.</p>
-        <div style="display: inline-flex; align-items: center; gap: 8px; background: white; padding: 6px 16px; border-radius: var(--radius-pill); box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 24px;">
-            <span style="color: var(--color-mustard); font-size: 1.2rem;">★★★★★</span>
-            <span style="font-weight: 700;">4.8/5</span>
-            <span style="color: #777; font-size: 0.9rem;">(124+ Ratings)</span>
-        </div>
-
-        <div class="feedback-grid">
-            <div class="feedback-card">
-                <div class="feedback-stars">★★★★★</div>
-                <p class="feedback-text">"The Paneer Thali is absolutely delicious. Tastes exactly like ghar ka khana. We order for the whole office in Khadoli every week."</p>
-                <div class="feedback-author">Rahul D.</div>
+    <!-- NEW NORMAL CART MODAL -->
+    <div id="cart-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Order</h2>
+                <button class="close-btn" onclick="closeCartModal()">&times;</button>
             </div>
-            <div class="feedback-card">
-                <div class="feedback-stars">★★★★★</div>
-                <p class="feedback-text">"Samosa buckets are our go-to evening snack. Always fresh, hot, and the minimum order of ₹200 is totally worth it for the family."</p>
-                <div class="feedback-author">Sneha P.</div>
+            <div class="modal-body">
+                <div id="cart-items-container"></div>
+                <div style="margin-top: 24px; padding-top: 16px; border-top: 2px dashed #ddd; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="font-size: 1.4rem;">Total:</h3>
+                    <h3 style="font-size: 1.8rem; color: var(--color-green-dark);" id="cart-modal-total">₹0</h3>
+                </div>
+                <p id="cart-warning" style="color: var(--color-maroon); font-size: 0.95rem; margin-top: 12px; display: none; font-weight: 700;">* Minimum order is ₹200 when purchasing snacks. Please add more items.</p>
             </div>
-            <div class="feedback-card">
-                <div class="feedback-stars">★★★★★</div>
-                <p class="feedback-text">"Love the new Chole-Chawal bowls! Super convenient, filling, and honest pricing. It's great to bypass the app commissions."</p>
-                <div class="feedback-author">Amit S.</div>
+            <div class="modal-footer" style="margin-top: 24px;">
+                <button class="btn btn-primary" style="width: 100%; background-color: var(--color-whatsapp); color: white; border: none;" onclick="checkoutCart()">Checkout via WhatsApp</button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- BULK ORDER MODAL -->
+    <!-- FLOATING CART BUTTON -->
+    <div id="floating-cart" class="floating-cart" onclick="openCartModal()">
+        <div class="cart-icon">🛒 <span id="cart-qty" class="cart-badge">0</span></div>
+        <div class="cart-info">View Cart <span id="cart-total">₹0</span></div>
+    </div>
+    
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast">Added to cart!</div>
+
+    <!-- BULK ORDER MODAL (KEPT SEPARATE FOR PARTIES) -->
     <div id="bulk-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -179,13 +180,8 @@
             </div>
             <div class="modal-body">
                 <p style="color: #555; margin-bottom: 16px;">Select items and quantities for your party or office event. We will prepare everything fresh!</p>
-                
-                <div id="bulk-rows-container">
-                    <!-- Javascript will inject the dropdown rows here -->
-                </div>
-                
+                <div id="bulk-rows-container"></div>
                 <button class="btn btn-outline" style="width: 100%; margin-top: 12px; padding: 10px;" onclick="addBulkRow()">+ Add Another Item</button>
-                
                 <div style="margin-top: 24px; padding-top: 16px; border-top: 2px dashed #ddd; display: flex; justify-content: space-between; align-items: center;">
                     <h3 style="font-size: 1.4rem;">Estimated Total:</h3>
                     <h3 style="font-size: 1.8rem; color: var(--color-green-dark);" id="bulk-total-price">₹0</h3>
@@ -199,7 +195,6 @@
 
     <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
-            <!-- FOOTER LOGO INCREASED TO 90px -->
             <img src="images/EATHUB%20LOGO.png" alt="Eat Hub" style="height: 90px; width: auto; object-fit: contain; filter: invert(1) brightness(100); margin-bottom: 16px;">
             <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>
             <p style="color: #aaa; font-size: 0.9rem;">526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu</p>
@@ -207,7 +202,8 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/919737786796?text=Hi!%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="floating-wa">
+    <!-- Small WhatsApp button just for inquiries -->
+    <a href="https://wa.me/919737786796?text=Hi!%20I%20have%20an%20inquiry." target="_blank" class="floating-wa">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 

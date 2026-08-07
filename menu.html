@@ -11,7 +11,6 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html">
-                <!-- LOGO SIZE INCREASED TO 100px HERE -->
                 <img src="images/EATHUB%20LOGO.png" alt="Eat Hub Logo" style="height: 100px; width: auto; object-fit: contain;">
             </a>
             <div class="nav-links">
@@ -37,7 +36,6 @@
 
     <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
-            <!-- FOOTER LOGO INCREASED TO 90px -->
             <img src="images/EATHUB%20LOGO.png" alt="Eat Hub" style="height: 90px; width: auto; object-fit: contain; filter: invert(1) brightness(100); margin-bottom: 16px;">
             <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>
             <p style="color: #aaa; font-size: 0.9rem;">526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu</p>
@@ -74,8 +72,10 @@
                     const waMsg = encodeURIComponent(`Hi Eat Hub! I would like to order:\n\n1x ${item.name} (₹${item.price})\n\nTotal: ₹${item.price}`);
                     const waLink = `https://wa.me/${siteData.restaurant.whatsappNumber}?text=${waMsg}`;
 
+                    // Insert image at the top if it exists
                     html += `
                         <div class="menu-card">
+                            ${item.image ? `<img src="${item.image}" alt="${item.name}" class="menu-item-photo">` : ''}
                             <div class="card-compartment">
                                 <div class="price-badge">₹${item.price}</div>
                             </div>

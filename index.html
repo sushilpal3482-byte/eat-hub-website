@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eat Hub | Fresh & Tasty</title>
+    <meta name="description" content="Ghar Jaisa Khana in Khadoli & Khanvel. Budget-friendly, everyday food since 2003.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="brand-logo">
+                <span class="eat">EAT</span>
+                <span class="hub">HUB</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="status-pill" id="live-status">Loading Status...</div>
+        </div>
+    </nav>
+
+    <!-- Sunday Special Banner (Hidden by default, triggered by JS) -->
+    <div id="sunday-banner" style="display: none; background: var(--color-mustard); text-align: center; padding: 12px; font-weight: 700; font-family: var(--font-heading); font-size: 1.1rem;"></div>
+
+    <!-- Hero Section -->
+    <section class="bg-alt">
+        <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
+            <!-- Text Content -->
+            <div style="flex: 1; min-width: 300px;">
+                <span class="legacy-badge">Since 2003 · Formerly Prayagraj Hotel</span>
+                <h1 style="font-size: 3rem; margin-bottom: 8px;">Ghar Jaisa Khana,<br>Ab Ek Click Par.</h1>
+                <h2 style="font-family: var(--font-body); font-weight: 500; font-size: 1.5rem; color: #555; margin-bottom: 24px;">घर जैसा खाना, अब एक क्लिक पर।</h2>
+                <p style="margin-bottom: 32px; font-size: 1.1rem;">Fresh, home-style North Indian meals delivered across Khadoli, Khanvel, and Rakholi. No platform commissions, just honest food.</p>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                    <button onclick="document.getElementById('delivery-section').scrollIntoView({behavior: 'smooth'})" class="btn btn-primary">Check Delivery</button>
+                    <a href="menu.html" class="btn btn-outline">View Full Menu</a>
+                </div>
+            </div>
+            
+            <!-- Signature Thali SVG Graphic -->
+            <div style="flex: 1; min-width: 300px; text-align: center;">
+                <svg viewBox="0 0 200 200" width="100%" max-width="350px" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Outer Plate -->
+                    <circle cx="100" cy="100" r="95" fill="var(--color-green-tint)" stroke="var(--color-green-dark)" stroke-width="4"/>
+                    <circle cx="100" cy="100" r="80" fill="var(--color-bg-cream)" stroke="var(--color-green)" stroke-width="2"/>
+                    <!-- Food Compartments -->
+                    <circle cx="65" cy="65" r="25" fill="var(--color-mustard)" />
+                    <circle cx="135" cy="65" r="25" fill="var(--color-maroon)" />
+                    <circle cx="100" cy="135" r="35" fill="var(--color-green)" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Zone Checker -->
+    <section id="delivery-section" class="container">
+        <h2 style="text-align: center; margin-bottom: 32px; font-size: 2.2rem;">Delivery Zones</h2>
+        <div style="background: white; padding: 40px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); text-align: center; max-width: 800px; margin: 0 auto;">
+            <p style="margin-bottom: 24px; font-size: 1.1rem;">Click below to check your exact delivery fee based on your location. We deliver up to 7km from Khadoli.</p>
+            <button id="check-location-btn" class="btn btn-primary">📍 Use My Current Location</button>
+            <div id="location-result" style="margin-top: 24px; font-weight: 600; font-size: 1.2rem; color: var(--color-green-dark);"></div>
+            
+            <div style="display: flex; justify-content: center; gap: 24px; margin-top: 40px; flex-wrap: wrap;">
+                <div style="background: var(--color-bg-alt); padding: 20px; border-radius: var(--radius-md); width: 220px;">
+                    <h3 style="margin-bottom: 4px;">Khadoli</h3>
+                    <p style="font-size: 0.9rem; color: #555;">Industrial Area<br><strong>Free Delivery</strong></p>
+                </div>
+                <div style="background: var(--color-bg-alt); padding: 20px; border-radius: var(--radius-md); width: 220px;">
+                    <h3 style="margin-bottom: 4px;">Khanvel</h3>
+                    <p style="font-size: 0.9rem; color: #555;">Residential Area<br><strong>Distance Fee over 5km</strong></p>
+                </div>
+                <div style="background: var(--color-bg-alt); padding: 20px; border-radius: var(--radius-md); width: 220px;">
+                    <h3 style="margin-bottom: 4px;">Rakholi</h3>
+                    <p style="font-size: 0.9rem; color: #555;">Mixed Zone<br><strong>Check distance for fee</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Menu (Injected by JS) -->
+    <section class="bg-alt">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 8px; font-size: 2.2rem;">Today's Lunch Thali</h2>
+            <p style="text-align: center; margin-bottom: 32px; color: #555;">Bestsellers straight from our family kitchen</p>
+            <div id="featured-menu" class="menu-grid">
+                <!-- Javascript will inject the lunch items from data.js here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Eat Hub -->
+    <section class="container" style="text-align: center;">
+        <h2 style="margin-bottom: 40px; font-size: 2.2rem;">Why Eat Hub?</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px;">
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 12px;">🥬</div>
+                <h3 style="margin-bottom: 8px;">Fresh Daily</h3>
+                <p style="color: #555;">Prepared every morning, never frozen.</p>
+            </div>
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 12px;">🚫</div>
+                <h3 style="margin-bottom: 8px;">No Commission</h3>
+                <p style="color: #555;">Honest prices by ordering direct via WhatsApp.</p>
+            </div>
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 12px;">🛵</div>
+                <h3 style="margin-bottom: 8px;">Own Delivery</h3>
+                <p style="color: #555;">Delivered safely by our own dedicated team.</p>
+            </div>
+            <div>
+                <div style="font-size: 3rem; margin-bottom: 12px;">🕰️</div>
+                <h3 style="margin-bottom: 8px;">Since 2003</h3>
+                <p style="color: #555;">Two decades of trusted service in Dadra & Nagar Haveli.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--color-black); color: white; padding: 40px 0; text-align: center; margin-top: 40px;">
+        <div class="container">
+            <h2 style="font-family: var(--font-heading); font-size: 2rem; margin-bottom: 8px;">Eat Hub</h2>
+            <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>
+            <p style="color: #aaa; font-size: 0.9rem;">526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu</p>
+            <p style="margin-top: 24px; color: #666; font-size: 0.8rem;">© 2026 Eat Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/919737786796?text=Hi!%20I%20would%20like%20to%20see%20today's%20menu." target="_blank" class="floating-wa">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Application Logic -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

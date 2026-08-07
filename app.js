@@ -1,6 +1,3 @@
-// app.js
-
-// 1. Live Open/Closed Status
 function updateStatus() {
     const statusEl = document.getElementById('live-status');
     if (!statusEl) return;
@@ -55,19 +52,17 @@ function updateStatus() {
     }
 }
 
-// 2. Sunday Special Banner
 function checkSundaySpecial() {
     const banner = document.getElementById('sunday-banner');
     if (!banner) return;
     
-    const today = new Date().getDay(); // 0 is Sunday
+    const today = new Date().getDay(); 
     if (today === 0 && siteData.sundaySpecial.enabled) {
         banner.textContent = siteData.sundaySpecial.text;
         banner.style.display = 'block';
     }
 }
 
-// 3. Render Featured Menu (Lunch Thali)
 function renderFeaturedMenu() {
     const container = document.getElementById('featured-menu');
     if (!container) return;
@@ -98,7 +93,6 @@ function renderFeaturedMenu() {
     container.innerHTML = html;
 }
 
-// 4. Geolocation Delivery Checker
 function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; 
     const dLat = (lat2 - lat1) * (Math.PI / 180);
@@ -163,7 +157,6 @@ function initDeliveryChecker() {
     });
 }
 
-// 5. Horizontal Scrolling for Offers
 function initOffersScroll() {
     const track = document.getElementById('offers-track');
     const btnLeft = document.getElementById('scroll-left');
@@ -180,7 +173,6 @@ function initOffersScroll() {
     }
 }
 
-// Initialize everything when the DOM loads
 document.addEventListener('DOMContentLoaded', () => {
     updateStatus();
     setInterval(updateStatus, 60000);

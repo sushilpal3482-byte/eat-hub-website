@@ -14,7 +14,6 @@ function updateStatus() {
     let nextDaypart = null;
     let isClosed = true;
 
-    // Helper to convert "HH:MM" to a decimal number for easy comparison
     const timeToDecimal = (timeStr) => {
         const [h, m] = timeStr.split(':').map(Number);
         return h + m / 60;
@@ -99,9 +98,9 @@ function renderFeaturedMenu() {
     container.innerHTML = html;
 }
 
-// 4. Geolocation Delivery Checker (Haversine Formula)
+// 4. Geolocation Delivery Checker
 function calculateDistance(lat1, lon1, lat2, lon2) {
-    const R = 6371; // Radius of the earth in km
+    const R = 6371; 
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
     const a = 
@@ -109,7 +108,7 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
         Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * 
         Math.sin(dLon / 2) * Math.sin(dLon / 2); 
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
-    return R * c; // Distance in km
+    return R * c; 
 }
 
 function initDeliveryChecker() {
@@ -143,7 +142,6 @@ function initDeliveryChecker() {
                     resultDiv.textContent = `You are ${distance.toFixed(1)} km away. Great news, you qualify for Free Delivery! 🎉`;
                     resultDiv.style.color = "var(--color-green-dark)";
                 } else if (distance <= maxRadiusKm) {
-                    // Linear scale for fee between 5km and 7km (₹10 to ₹20)
                     const extraDistance = distance - freeRadiusKm;
                     const feeRange = maxCharge - minCharge;
                     const distanceRange = maxRadiusKm - freeRadiusKm;
@@ -165,11 +163,29 @@ function initDeliveryChecker() {
     });
 }
 
+// 5. Horizontal Scrolling for Offers
+function initOffersScroll() {
+    const track = document.getElementById('offers-track');
+    const btnLeft = document.getElementById('scroll-left');
+    const btnRight = document.getElementById('scroll-right');
+
+    if (track && btnLeft && btnRight) {
+        btnLeft.addEventListener('click', () => {
+            track.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+        
+        btnRight.addEventListener('click', () => {
+            track.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+    }
+}
+
 // Initialize everything when the DOM loads
 document.addEventListener('DOMContentLoaded', () => {
     updateStatus();
-    setInterval(updateStatus, 60000); // Update status every minute
+    setInterval(updateStatus, 60000);
     checkSundaySpecial();
     renderFeaturedMenu();
     initDeliveryChecker();
+    initOffersScroll(); // Initializes the newly added slider
 });

@@ -6,7 +6,8 @@ const siteData = {
     whatsappNumber: "919737786796", 
     address: "Prayagraj Hotel, 526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu",
     googleMapsLink: "https://maps.app.goo.gl/U4zJzJzJzJzJzJzJz", 
-    location: { lat: 20.2741, lng: 73.0083 },
+    // UPDATED WITH YOUR EXACT GPS COORDINATES:
+    location: { lat: 20.16108374112911, lng: 73.03006390271933 },
     rating: 4.8,
     ratingCount: 124
   },

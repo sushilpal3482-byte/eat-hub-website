@@ -26,13 +26,43 @@
     <section class="bg-alt" style="padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
             <h1 style="font-size: 3rem; margin-bottom: 12px;">Our Menu</h1>
-            <p style="color: #555; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Authentic, home-style North Indian meals prepared fresh daily. Click any item to easily add it to your WhatsApp order.</p>
+            <p style="color: #555; font-size: 1.2rem; max-width: 600px; margin: 0 auto;">Authentic, home-style North Indian meals prepared fresh daily. Click any item to easily add it to your cart.</p>
         </div>
     </section>
 
     <section style="padding: 20px 0 80px 0;">
         <div class="container" id="full-menu-container"></div>
     </section>
+
+    <!-- NEW NORMAL CART MODAL -->
+    <div id="cart-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Your Order</h2>
+                <button class="close-btn" onclick="closeCartModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="cart-items-container"></div>
+                <div style="margin-top: 24px; padding-top: 16px; border-top: 2px dashed #ddd; display: flex; justify-content: space-between; align-items: center;">
+                    <h3 style="font-size: 1.4rem;">Total:</h3>
+                    <h3 style="font-size: 1.8rem; color: var(--color-green-dark);" id="cart-modal-total">₹0</h3>
+                </div>
+                <p id="cart-warning" style="color: var(--color-maroon); font-size: 0.95rem; margin-top: 12px; display: none; font-weight: 700;">* Minimum order is ₹200 when purchasing snacks. Please add more items.</p>
+            </div>
+            <div class="modal-footer" style="margin-top: 24px;">
+                <button class="btn btn-primary" style="width: 100%; background-color: var(--color-whatsapp); color: white; border: none;" onclick="checkoutCart()">Checkout via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING CART BUTTON -->
+    <div id="floating-cart" class="floating-cart" onclick="openCartModal()">
+        <div class="cart-icon">🛒 <span id="cart-qty" class="cart-badge">0</span></div>
+        <div class="cart-info">View Cart <span id="cart-total">₹0</span></div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast">Added to cart!</div>
 
     <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
@@ -42,10 +72,6 @@
             <p style="margin-top: 32px; color: #666; font-size: 0.8rem;">© 2026 Eat Hub. All rights reserved.</p>
         </div>
     </footer>
-
-    <a href="https://wa.me/919737786796?text=Hi!%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="floating-wa">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
 
     <script src="data.js"></script>
     <script src="app.js"></script>
@@ -69,10 +95,6 @@
                 html += `<div class="menu-grid">`;
                 
                 section.items.forEach(item => {
-                    const waMsg = encodeURIComponent(`Hi Eat Hub! I would like to order:\n\n1x ${item.name} (₹${item.price})\n\nTotal: ₹${item.price}`);
-                    const waLink = `https://wa.me/${siteData.restaurant.whatsappNumber}?text=${waMsg}`;
-
-                    // Insert image at the top if it exists
                     html += `
                         <div class="menu-card">
                             ${item.image ? `<img src="${item.image}" alt="${item.name}" class="menu-item-photo">` : ''}
@@ -83,7 +105,7 @@
                                 <h3 class="item-name-en">${item.name}</h3>
                                 <div class="item-name-hi">${item.nameHi}</div>
                                 <p class="item-desc">${item.desc}</p>
-                                <a href="${waLink}" target="_blank" class="btn btn-wa-order">Order via WhatsApp</a>
+                                <button onclick="addToCart('${item.name.replace(/'/g, "\\'")}', ${item.price}, '${section.category.replace(/'/g, "\\'")}')" class="btn-wa-order">Add to Cart</button>
                             </div>
                         </div>
                     `;

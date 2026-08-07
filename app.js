@@ -1,5 +1,4 @@
-// app.js
-
+// --- STORE HOURS & DELIVERY LOGIC ---
 function updateStatus() {
     const statusEl = document.getElementById('live-status');
     if (!statusEl) return;
@@ -18,12 +17,11 @@ function updateStatus() {
         return h + m / 60;
     };
 
-    const hours = siteData.hours;
     const schedule = [
-        hours.morningSnacks,
-        hours.lunchThali,
-        hours.eveningSnacks,
-        hours.dinnerThali
+        siteData.hours.morningSnacks,
+        siteData.hours.lunchThali,
+        siteData.hours.eveningSnacks,
+        siteData.hours.dinnerThali
     ];
 
     for (let i = 0; i < schedule.length; i++) {
@@ -47,7 +45,7 @@ function updateStatus() {
         if (nextDaypart) {
             statusEl.textContent = `Closed — Opens for ${nextDaypart.label} at ${nextDaypart.open}`;
         } else {
-            statusEl.textContent = `Closed — Opens Tomorrow at ${hours.morningSnacks.open}`;
+            statusEl.textContent = `Closed — Opens Tomorrow at ${siteData.hours.morningSnacks.open}`;
         }
         statusEl.style.backgroundColor = '#f8d7da';
         statusEl.style.color = '#721c24';
@@ -57,7 +55,6 @@ function updateStatus() {
 function checkSundaySpecial() {
     const banner = document.getElementById('sunday-banner');
     if (!banner) return;
-    
     const today = new Date().getDay(); 
     if (today === 0 && siteData.sundaySpecial.enabled) {
         banner.textContent = siteData.sundaySpecial.text;
@@ -65,6 +62,7 @@ function checkSundaySpecial() {
     }
 }
 
+// --- FEATURED MENU (INDEX PAGE) ---
 function renderFeaturedMenu() {
     const container = document.getElementById('featured-menu');
     if (!container) return;
@@ -74,10 +72,6 @@ function renderFeaturedMenu() {
 
     let html = '';
     lunchData.items.forEach(item => {
-        const waMsg = encodeURIComponent(`Hi Eat Hub! I would like to order: ${item.name} (₹${item.price})`);
-        const waLink = `https://wa.me/${siteData.restaurant.whatsappNumber}?text=${waMsg}`;
-
-        // Insert image at the top if it exists
         html += `
             <div class="menu-card">
                 ${item.image ? `<img src="${item.image}" alt="${item.name}" class="menu-item-photo">` : ''}
@@ -88,74 +82,228 @@ function renderFeaturedMenu() {
                     <h3 class="item-name-en">${item.name}</h3>
                     <div class="item-name-hi">${item.nameHi}</div>
                     <p class="item-desc">${item.desc}</p>
-                    <a href="${waLink}" target="_blank" class="btn btn-wa-order">Order on WhatsApp</a>
+                    <button onclick="addToCart('${item.name.replace(/'/g, "\\'")}', ${item.price}, 'Lunch Thali')" class="btn-wa-order">Add to Cart</button>
                 </div>
             </div>
         `;
     });
-
     container.innerHTML = html;
 }
 
+// --- NEW CART LOGIC ---
+let cart = [];
+
+function addToCart(name, price, category) {
+    let existing = cart.find(i => i.name === name);
+    if(existing) {
+        existing.qty++;
+    } else {
+        cart.push({name, price, category, qty: 1});
+    }
+    updateCartUI();
+    showToast(`Added ${name} to cart!`);
+}
+
+function updateCartUI() {
+    const cartBtn = document.getElementById('floating-cart');
+    if(!cartBtn) return;
+    
+    let totalQty = 0;
+    let totalPrice = 0;
+    cart.forEach(item => {
+        totalQty += item.qty;
+        totalPrice += item.price * item.qty;
+    });
+
+    if(totalQty > 0) {
+        cartBtn.style.display = 'flex';
+        document.getElementById('cart-qty').innerText = totalQty;
+        document.getElementById('cart-total').innerText = '₹' + totalPrice;
+    } else {
+        cartBtn.style.display = 'none';
+        closeCartModal();
+    }
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    if(!toast) return;
+    toast.innerText = message;
+    toast.classList.add('show');
+    setTimeout(() => { toast.classList.remove('show'); }, 2500);
+}
+
+function openCartModal() {
+    renderCartItems();
+    document.getElementById('cart-modal').style.display = 'flex';
+}
+
+function closeCartModal() {
+    document.getElementById('cart-modal').style.display = 'none';
+}
+
+function changeCartQty(index, delta) {
+    cart[index].qty += delta;
+    if(cart[index].qty <= 0) {
+        cart.splice(index, 1);
+    }
+    updateCartUI();
+    if(cart.length > 0) {
+        renderCartItems();
+    } else {
+        closeCartModal();
+    }
+}
+
+function renderCartItems() {
+    const container = document.getElementById('cart-items-container');
+    if(!container) return;
+    
+    let html = '';
+    let total = 0;
+    let hasSnacks = false;
+
+    cart.forEach((item, index) => {
+        if(item.category === 'Morning Snacks' || item.category === 'Evening Snacks') hasSnacks = true;
+        let itemTotal = item.price * item.qty;
+        total += itemTotal;
+        html += `
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px solid #eee; padding-bottom: 8px;">
+                <div style="flex: 1;">
+                    <h4 style="margin: 0; font-size: 1.1rem;">${item.name}</h4>
+                    <span style="color: #666; font-size: 0.9rem;">₹${item.price} x ${item.qty} = ₹${itemTotal}</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <button onclick="changeCartQty(${index}, -1)" style="padding: 4px 12px; border-radius: 6px; border: 1px solid #ddd; background: white; cursor: pointer; font-weight:bold;">-</button>
+                    <span style="font-weight: bold; font-size: 1.1rem; width: 16px; text-align: center;">${item.qty}</span>
+                    <button onclick="changeCartQty(${index}, 1)" style="padding: 4px 12px; border-radius: 6px; border: 1px solid #ddd; background: white; cursor: pointer; font-weight:bold;">+</button>
+                </div>
+            </div>
+        `;
+    });
+    container.innerHTML = html;
+    document.getElementById('cart-modal-total').innerText = '₹' + total;
+
+    const warning = document.getElementById('cart-warning');
+    if (hasSnacks && total < 200) {
+        warning.style.display = 'block';
+    } else {
+        warning.style.display = 'none';
+    }
+}
+
+function checkoutCart() {
+    let totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+    let hasSnacks = cart.some(item => item.category === 'Morning Snacks' || item.category === 'Evening Snacks');
+
+    if(hasSnacks && totalPrice < 200) {
+        alert("Minimum order amount is ₹200 when ordering Snacks. Please add more items to your cart!");
+        return;
+    }
+
+    let message = "Hi Eat Hub! I would like to place an order:\n\n";
+    cart.forEach(item => {
+        message += `▪ ${item.qty}x ${item.name} (₹${item.price} each) = ₹${item.price * item.qty}\n`;
+    });
+    message += `\n*Total: ₹${totalPrice}*\n\nPlease confirm my order.`;
+
+    window.open(`https://wa.me/${siteData.restaurant.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+}
+
+// --- BULK ORDER LOGIC (STILL WORKS SEPARATELY FOR PARTIES) ---
+let flatMenu = [];
+let bulkOrderState = [];
+
+function initBulkMenu() {
+    flatMenu = [];
+    siteData.menu.forEach(category => {
+        category.items.forEach(item => {
+            if (!flatMenu.find(i => i.name === item.name)) flatMenu.push(item);
+        });
+    });
+}
+function openBulkModal() {
+    if (flatMenu.length === 0) initBulkMenu();
+    bulkOrderState = [{ itemName: flatMenu[0].name, qty: 10 }];
+    renderBulkRows();
+    document.getElementById('bulk-modal').style.display = 'flex';
+}
+function closeBulkModal() { document.getElementById('bulk-modal').style.display = 'none'; }
+function renderBulkRows() {
+    const container = document.getElementById('bulk-rows-container');
+    let html = '';
+    let total = 0;
+    bulkOrderState.forEach((row, index) => {
+        const selectedItem = flatMenu.find(i => i.name === row.itemName);
+        total += selectedItem ? selectedItem.price * row.qty : 0;
+        html += `
+            <div class="bulk-row">
+                <select class="bulk-select" onchange="updateBulkItem(${index}, this.value)">
+                    ${flatMenu.map(item => `<option value="${item.name}" ${item.name === row.itemName ? 'selected' : ''}>${item.name} (₹${item.price})</option>`).join('')}
+                </select>
+                <input type="number" class="bulk-qty" min="1" value="${row.qty}" onchange="updateBulkQty(${index}, this.value)">
+                <button class="bulk-remove" onclick="removeBulkRow(${index})">×</button>
+            </div>`;
+    });
+    container.innerHTML = html;
+    document.getElementById('bulk-total-price').textContent = `₹${total}`;
+}
+function addBulkRow() { bulkOrderState.push({ itemName: flatMenu[0].name, qty: 5 }); renderBulkRows(); }
+function removeBulkRow(index) { bulkOrderState.splice(index, 1); renderBulkRows(); }
+function updateBulkItem(index, value) { bulkOrderState[index].itemName = value; renderBulkRows(); }
+function updateBulkQty(index, value) { bulkOrderState[index].qty = parseInt(value) || 1; renderBulkRows(); }
+function sendBulkOrder() {
+    if (bulkOrderState.length === 0) { alert("Please add at least one item."); return; }
+    let message = "Hi Eat Hub! I would like to place a Bulk Order for a party/event:\n\n";
+    let total = 0;
+    bulkOrderState.forEach(row => {
+        const item = flatMenu.find(i => i.name === row.itemName);
+        if (item) {
+            message += `▪ ${row.qty}x ${item.name} (₹${item.price} each) = ₹${item.price * row.qty}\n`;
+            total += item.price * row.qty;
+        }
+    });
+    message += `\n*Estimated Total: ₹${total}*\n\nPlease confirm availability for this bulk order.`;
+    window.open(`https://wa.me/${siteData.restaurant.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
+    closeBulkModal();
+}
+
+// --- GPS DELIVERY CHECKER ---
 function calculateDistance(lat1, lon1, lat2, lon2) {
     const R = 6371; 
     const dLat = (lat2 - lat1) * (Math.PI / 180);
     const dLon = (lon2 - lon1) * (Math.PI / 180);
-    const a = 
-        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * 
-        Math.sin(dLon / 2) * Math.sin(dLon / 2); 
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)); 
-    return R * c; 
+    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2); 
+    return R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))); 
 }
 
 function initDeliveryChecker() {
     const btn = document.getElementById('check-location-btn');
     const resultDiv = document.getElementById('location-result');
-    
     if (!btn || !resultDiv) return;
-
     btn.addEventListener('click', () => {
         if (!navigator.geolocation) {
-            resultDiv.textContent = "Geolocation is not supported by your browser.";
-            resultDiv.style.color = "red";
-            return;
+            resultDiv.textContent = "Geolocation is not supported by your browser."; resultDiv.style.color = "red"; return;
         }
-
         btn.textContent = "Checking...";
-        
         navigator.geolocation.getCurrentPosition(
             (position) => {
-                const userLat = position.coords.latitude;
-                const userLng = position.coords.longitude;
-                const restLat = siteData.restaurant.location.lat;
-                const restLng = siteData.restaurant.location.lng;
-
-                const distance = calculateDistance(userLat, userLng, restLat, restLng);
+                const distance = calculateDistance(position.coords.latitude, position.coords.longitude, siteData.restaurant.location.lat, siteData.restaurant.location.lng);
                 const { freeRadiusKm, maxRadiusKm, minCharge, maxCharge } = siteData.delivery;
-
                 btn.textContent = "📍 Use My Current Location";
-
                 if (distance <= freeRadiusKm) {
-                    resultDiv.textContent = `You are ${distance.toFixed(1)} km away. Great news, you qualify for Free Delivery! 🎉`;
-                    resultDiv.style.color = "var(--color-green-dark)";
+                    resultDiv.textContent = `You are ${distance.toFixed(1)} km away. Great news, Free Delivery! 🎉`; resultDiv.style.color = "var(--color-green-dark)";
                 } else if (distance <= maxRadiusKm) {
-                    const extraDistance = distance - freeRadiusKm;
-                    const feeRange = maxCharge - minCharge;
-                    const distanceRange = maxRadiusKm - freeRadiusKm;
-                    const calculatedFee = minCharge + (extraDistance / distanceRange) * feeRange;
-                    
-                    resultDiv.textContent = `You are ${distance.toFixed(1)} km away. Delivery fee: ₹${Math.round(calculatedFee)}.`;
-                    resultDiv.style.color = "var(--color-mustard-hover)";
+                    const extra = distance - freeRadiusKm;
+                    const calculatedFee = minCharge + (extra / (maxRadiusKm - freeRadiusKm)) * (maxCharge - minCharge);
+                    resultDiv.textContent = `You are ${distance.toFixed(1)} km away. Delivery fee: ₹${Math.round(calculatedFee)}.`; resultDiv.style.color = "var(--color-mustard-hover)";
                 } else {
-                    resultDiv.textContent = `You are ${distance.toFixed(1)} km away. Sorry, you are currently out of our delivery range.`;
-                    resultDiv.style.color = "var(--color-maroon)";
+                    resultDiv.textContent = `You are ${distance.toFixed(1)} km away. Sorry, you are out of delivery range.`; resultDiv.style.color = "var(--color-maroon)";
                 }
             },
             (error) => {
                 btn.textContent = "📍 Use My Current Location";
-                resultDiv.textContent = "Unable to retrieve your location. Please ensure location permissions are granted.";
-                resultDiv.style.color = "var(--color-maroon)";
+                resultDiv.textContent = "Unable to retrieve your location. Please ensure location permissions are granted."; resultDiv.style.color = "var(--color-maroon)";
             }
         );
     });
@@ -165,118 +313,13 @@ function initOffersScroll() {
     const track = document.getElementById('offers-track');
     const btnLeft = document.getElementById('scroll-left');
     const btnRight = document.getElementById('scroll-right');
-
     if (track && btnLeft && btnRight) {
-        btnLeft.addEventListener('click', () => {
-            track.scrollBy({ left: -300, behavior: 'smooth' });
-        });
-        
-        btnRight.addEventListener('click', () => {
-            track.scrollBy({ left: 300, behavior: 'smooth' });
-        });
+        btnLeft.addEventListener('click', () => { track.scrollBy({ left: -300, behavior: 'smooth' }); });
+        btnRight.addEventListener('click', () => { track.scrollBy({ left: 300, behavior: 'smooth' }); });
     }
-}
-
-let flatMenu = [];
-let bulkOrderState = [];
-
-function initBulkMenu() {
-    flatMenu = [];
-    siteData.menu.forEach(category => {
-        category.items.forEach(item => {
-            if (!flatMenu.find(i => i.name === item.name)) {
-                flatMenu.push(item);
-            }
-        });
-    });
-}
-
-function openBulkModal() {
-    if (flatMenu.length === 0) initBulkMenu();
-    bulkOrderState = [{ itemName: flatMenu[0].name, qty: 10 }];
-    renderBulkRows();
-    document.getElementById('bulk-modal').style.display = 'flex';
-}
-
-function closeBulkModal() {
-    document.getElementById('bulk-modal').style.display = 'none';
-}
-
-function renderBulkRows() {
-    const container = document.getElementById('bulk-rows-container');
-    let html = '';
-    let total = 0;
-
-    bulkOrderState.forEach((row, index) => {
-        const selectedItem = flatMenu.find(i => i.name === row.itemName);
-        const rowTotal = selectedItem ? selectedItem.price * row.qty : 0;
-        total += rowTotal;
-
-        html += `
-            <div class="bulk-row">
-                <select class="bulk-select" onchange="updateBulkItem(${index}, this.value)">
-                    ${flatMenu.map(item => `<option value="${item.name}" ${item.name === row.itemName ? 'selected' : ''}>${item.name} (₹${item.price})</option>`).join('')}
-                </select>
-                <input type="number" class="bulk-qty" min="1" value="${row.qty}" onchange="updateBulkQty(${index}, this.value)">
-                <button class="bulk-remove" onclick="removeBulkRow(${index})">×</button>
-            </div>
-        `;
-    });
-
-    container.innerHTML = html;
-    document.getElementById('bulk-total-price').textContent = `₹${total}`;
-}
-
-function addBulkRow() {
-    bulkOrderState.push({ itemName: flatMenu[0].name, qty: 5 });
-    renderBulkRows();
-}
-
-function removeBulkRow(index) {
-    bulkOrderState.splice(index, 1);
-    renderBulkRows();
-}
-
-function updateBulkItem(index, value) {
-    bulkOrderState[index].itemName = value;
-    renderBulkRows();
-}
-
-function updateBulkQty(index, value) {
-    bulkOrderState[index].qty = parseInt(value) || 1;
-    renderBulkRows();
-}
-
-function sendBulkOrder() {
-    if (bulkOrderState.length === 0) {
-        alert("Please add at least one item.");
-        return;
-    }
-
-    let message = "Hi Eat Hub! I would like to place a Bulk Order for a party/event:\n\n";
-    let total = 0;
-
-    bulkOrderState.forEach(row => {
-        const item = flatMenu.find(i => i.name === row.itemName);
-        if (item) {
-            const rowTotal = item.price * row.qty;
-            message += `▪ ${row.qty}x ${item.name} (₹${item.price} each) = ₹${rowTotal}\n`;
-            total += rowTotal;
-        }
-    });
-
-    message += `\n*Estimated Total: ₹${total}*\n\nPlease confirm availability and delivery time for this order.`;
-
-    const waLink = `https://wa.me/${siteData.restaurant.whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(waLink, '_blank');
-    closeBulkModal();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    updateStatus();
-    setInterval(updateStatus, 60000);
-    checkSundaySpecial();
-    renderFeaturedMenu();
-    initDeliveryChecker();
-    initOffersScroll(); 
+    updateStatus(); setInterval(updateStatus, 60000);
+    checkSundaySpecial(); renderFeaturedMenu(); initDeliveryChecker(); initOffersScroll(); 
 });

@@ -55,9 +55,14 @@ section { padding: 60px 0; }
 .btn-wa-order { background-color: var(--color-green); color: white; width: 100%; font-size: 1.05rem; padding: 12px 20px; border-radius: 8px; border: none; cursor: pointer; transition: background 0.2s; font-weight: 700; }
 .btn-wa-order:hover { background-color: var(--color-green-dark); }
 
+/* CONTACT BUTTONS */
 .floating-wa { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background-color: var(--color-whatsapp); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4); z-index: 9997; transition: transform 0.3s ease; }
 .floating-wa img { width: 32px; height: 32px; }
 .floating-wa:hover { transform: scale(1.1); }
+
+.floating-call { position: fixed; bottom: 100px; right: 24px; width: 60px; height: 60px; background-color: var(--color-black); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 16px rgba(27, 27, 24, 0.4); z-index: 9997; transition: transform 0.3s ease; text-decoration: none; }
+.floating-call svg { width: 26px; height: 26px; fill: white; }
+.floating-call:hover { transform: scale(1.1); }
 
 /* FLOATING CART STYLES */
 .floating-cart { display: none; position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background-color: var(--color-mustard); color: var(--color-black); padding: 12px 24px; border-radius: var(--radius-pill); box-shadow: 0 8px 24px rgba(224, 165, 39, 0.4); z-index: 9998; align-items: center; justify-content: space-between; gap: 20px; cursor: pointer; font-family: var(--font-body); font-weight: 700; font-size: 1.1rem; width: 90%; max-width: 400px; transition: transform 0.2s; }

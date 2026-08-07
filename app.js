@@ -1,3 +1,5 @@
+// app.js
+
 function updateStatus() {
     const statusEl = document.getElementById('live-status');
     if (!statusEl) return;
@@ -173,6 +175,105 @@ function initOffersScroll() {
     }
 }
 
+// --- NEW BULK ORDER LOGIC ---
+let flatMenu = [];
+let bulkOrderState = [];
+
+function initBulkMenu() {
+    flatMenu = [];
+    siteData.menu.forEach(category => {
+        category.items.forEach(item => {
+            // Check if item already exists in the flat menu to avoid duplicates
+            if (!flatMenu.find(i => i.name === item.name)) {
+                flatMenu.push(item);
+            }
+        });
+    });
+}
+
+function openBulkModal() {
+    if (flatMenu.length === 0) initBulkMenu();
+    // Start with one empty row showing the first item
+    bulkOrderState = [{ itemName: flatMenu[0].name, qty: 10 }]; // Defaulting to 10 for bulk!
+    renderBulkRows();
+    document.getElementById('bulk-modal').style.display = 'flex';
+}
+
+function closeBulkModal() {
+    document.getElementById('bulk-modal').style.display = 'none';
+}
+
+function renderBulkRows() {
+    const container = document.getElementById('bulk-rows-container');
+    let html = '';
+    let total = 0;
+
+    bulkOrderState.forEach((row, index) => {
+        const selectedItem = flatMenu.find(i => i.name === row.itemName);
+        const rowTotal = selectedItem ? selectedItem.price * row.qty : 0;
+        total += rowTotal;
+
+        html += `
+            <div class="bulk-row">
+                <select class="bulk-select" onchange="updateBulkItem(${index}, this.value)">
+                    ${flatMenu.map(item => `<option value="${item.name}" ${item.name === row.itemName ? 'selected' : ''}>${item.name} (₹${item.price})</option>`).join('')}
+                </select>
+                <input type="number" class="bulk-qty" min="1" value="${row.qty}" onchange="updateBulkQty(${index}, this.value)">
+                <button class="bulk-remove" onclick="removeBulkRow(${index})">×</button>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+    document.getElementById('bulk-total-price').textContent = `₹${total}`;
+}
+
+function addBulkRow() {
+    bulkOrderState.push({ itemName: flatMenu[0].name, qty: 5 });
+    renderBulkRows();
+}
+
+function removeBulkRow(index) {
+    bulkOrderState.splice(index, 1);
+    renderBulkRows();
+}
+
+function updateBulkItem(index, value) {
+    bulkOrderState[index].itemName = value;
+    renderBulkRows();
+}
+
+function updateBulkQty(index, value) {
+    bulkOrderState[index].qty = parseInt(value) || 1;
+    renderBulkRows();
+}
+
+function sendBulkOrder() {
+    if (bulkOrderState.length === 0) {
+        alert("Please add at least one item.");
+        return;
+    }
+
+    let message = "Hi Eat Hub! I would like to place a Bulk Order for a party/event:\n\n";
+    let total = 0;
+
+    bulkOrderState.forEach(row => {
+        const item = flatMenu.find(i => i.name === row.itemName);
+        if (item) {
+            const rowTotal = item.price * row.qty;
+            message += `▪ ${row.qty}x ${item.name} (₹${item.price} each) = ₹${rowTotal}\n`;
+            total += rowTotal;
+        }
+    });
+
+    message += `\n*Estimated Total: ₹${total}*\n\nPlease confirm availability and delivery time for this order.`;
+
+    const waLink = `https://wa.me/${siteData.restaurant.whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(waLink, '_blank');
+    closeBulkModal();
+}
+
+// Initialize everything when the DOM loads
 document.addEventListener('DOMContentLoaded', () => {
     updateStatus();
     setInterval(updateStatus, 60000);

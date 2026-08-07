@@ -187,5 +187,5 @@ document.addEventListener('DOMContentLoaded', () => {
     checkSundaySpecial();
     renderFeaturedMenu();
     initDeliveryChecker();
-    initOffersScroll(); // Initializes the newly added slider
+    initOffersScroll(); 
 });

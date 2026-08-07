@@ -8,11 +8,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html">
-                <img src="Gemini_Generated_Image_rgrcgyrgrcgyrgrc.png" alt="Eat Hub Logo" class="brand-logo-img">
+                <img src="EATHUB%20LOGO.png" alt="Eat Hub Logo" style="height: 70px; width: auto; object-fit: contain;">
             </a>
             <div class="nav-links">
                 <a href="index.html">Home</a>
@@ -24,7 +23,6 @@
         </div>
     </nav>
 
-    <!-- Menu Header -->
     <section class="bg-alt" style="padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
             <h1 style="font-size: 3rem; margin-bottom: 12px;">Our Menu</h1>
@@ -32,33 +30,26 @@
         </div>
     </section>
 
-    <!-- Dynamic Full Menu Container -->
     <section style="padding: 20px 0 80px 0;">
-        <div class="container" id="full-menu-container">
-            <!-- JavaScript will inject all categories and items here -->
-        </div>
+        <div class="container" id="full-menu-container"></div>
     </section>
 
-    <!-- Footer -->
-    <footer style="background-color: var(--color-black); color: white; padding: 60px 0 40px 0; text-align: center;">
+    <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
-            <img src="Gemini_Generated_Image_rgrcgyrgrcgyrgrc.png" alt="Eat Hub" style="height: 60px; filter: invert(1) brightness(100); margin-bottom: 16px;">
+            <img src="EATHUB%20LOGO.png" alt="Eat Hub" style="height: 60px; width: auto; object-fit: contain; filter: invert(1) brightness(100); margin-bottom: 16px;">
             <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>
             <p style="color: #aaa; font-size: 0.9rem;">526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu</p>
             <p style="margin-top: 32px; color: #666; font-size: 0.8rem;">© 2026 Eat Hub. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/919737786796?text=Hi!%20I%20would%20like%20to%20place%20an%20order." target="_blank" class="floating-wa">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 
-    <!-- Core Scripts -->
     <script src="data.js"></script>
     <script src="app.js"></script>
 
-    <!-- Page-Specific Script to Render the Full Menu -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('full-menu-container');
@@ -67,22 +58,17 @@
             let html = '';
             
             siteData.menu.forEach(section => {
-                // Category Header
                 html += `<div style="margin-top: 40px; margin-bottom: 20px;">`;
                 html += `<h2 style="font-size: 2.2rem; color: var(--color-green-dark); border-bottom: 3px solid var(--color-mustard); display: inline-block; padding-bottom: 8px;">${section.category}</h2>`;
                 
-                // Add note if minimum order or bulk rule applies
                 if (section.note) {
                     html += `<p style="color: var(--color-maroon); font-weight: 600; margin-top: 12px; background-color: #fdf5f5; padding: 8px 16px; border-radius: var(--radius-sm); display: inline-block;">* ${section.note}</p>`;
                 }
                 
                 html += `</div>`;
-                
-                // Items Grid
                 html += `<div class="menu-grid">`;
                 
                 section.items.forEach(item => {
-                    // Pre-fill WhatsApp message for this specific item
                     const waMsg = encodeURIComponent(`Hi Eat Hub! I would like to order:\n\n1x ${item.name} (₹${item.price})\n\nTotal: ₹${item.price}`);
                     const waLink = `https://wa.me/${siteData.restaurant.whatsappNumber}?text=${waMsg}`;
 

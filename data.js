@@ -12,7 +12,7 @@ const siteData = {
   },
   
   hours: {
-    morningSnacks: { label: "Morning Snacks", open: "08:00", close: "11:30" },
+    morningSnacks: { label: "Morning Snacks", open: "08:00", close: "12:00" },
     lunchThali:  { label: "Lunch Thali", open: "12:00", close: "15:30" },
     eveningSnacks: { label: "Evening Snacks", open: "16:00", close: "19:00" },
     dinnerThali: { label: "Dinner Thali", open: "19:30", close: "22:30" }
@@ -99,12 +99,12 @@ const siteData = {
         { name: "Chole Thali", nameHi: "छोले थाली", price: 159, desc: "Rice, Dal, Chole, 4 Roti, Curd, Salad, Pickle.", image: "images/CHOLE-CHAWAL%20BOWL.jpeg" }
       ]
     },
-    {
+   {
       category: "Beverages & Add-ons",
       daypart: "allDay",
       items: [
         { name: "Tea", nameHi: "चाय", price: 10, desc: "Hot cup of traditional tea.", image: "images/Chai.png" },
-        { name: "Coffee", nameHi: "कॉफ़ी", price: 15, desc: "Hot freshly brewed coffee." , image: "images/coffee.png" }
+        { name: "Coffee", nameHi: "कॉफ़ी", price: 15, desc: "Hot freshly brewed coffee.", image: "images/coffee.png" },
         { name: "Water Bottle (1 L)", nameHi: "पानी की बोतल", price: 20, desc: "Chilled packaged drinking water." },
         { name: "Curd", nameHi: "दही", price: 20, desc: "Fresh bowl of plain curd.", image: "images/CURD.jpeg" },
         { name: "Chaas", nameHi: "छाछ", price: 20, desc: "Refreshing spiced buttermilk.", image: "images/AMUL%20MASTI.jpeg" },

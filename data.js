@@ -103,8 +103,8 @@ const siteData = {
       category: "Beverages & Add-ons",
       daypart: "allDay",
       items: [
-        { name: "Tea", nameHi: "चाय", price: 10, desc: "Hot cup of traditional tea.", image: "images/Chai.jpeg" },
-        { name: "Coffee", nameHi: "कॉफ़ी", price: 15, desc: "Hot freshly brewed coffee." , image: "images/coffee.jpeg" }
+        { name: "Tea", nameHi: "चाय", price: 10, desc: "Hot cup of traditional tea.", image: "images/Chai.png" },
+        { name: "Coffee", nameHi: "कॉफ़ी", price: 15, desc: "Hot freshly brewed coffee." , image: "images/coffee.png" }
         { name: "Water Bottle (1 L)", nameHi: "पानी की बोतल", price: 20, desc: "Chilled packaged drinking water." },
         { name: "Curd", nameHi: "दही", price: 20, desc: "Fresh bowl of plain curd.", image: "images/CURD.jpeg" },
         { name: "Chaas", nameHi: "छाछ", price: 20, desc: "Refreshing spiced buttermilk.", image: "images/AMUL%20MASTI.jpeg" },

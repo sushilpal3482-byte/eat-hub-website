@@ -141,14 +141,14 @@
                     <li>Dal & Rice</li>
                     <li>1 Sabji</li>
                     <li>
-                        <div style="width: 100%;"><strong>Bread Choice:</strong></div>
+                        <div style="width: 100%;"><strong>Choice of:</strong></div>
                         <select id="reg-bread" class="card-select">
                             <option value="4 Phulkas">4 Phulkas</option>
                             <option value="3 Triangle Parathas">3 Triangle Parathas</option>
                         </select>
                     </li>
                     <li>
-                        <div style="width: 100%;"><strong>Side Choice:</strong></div>
+                        <div style="width: 100%;"><strong>Choice of:</strong></div>
                         <select id="reg-side" class="card-select">
                             <option value="Curd">Curd</option>
                             <option value="Chaas">Chaas</option>
@@ -184,7 +184,7 @@
                     <li>Jira Rice & Dal Fry</li>
                     <li>Paneer Sabji</li>
                     <li>
-                        <div style="width: 100%;"><strong>Bread Choice:</strong></div>
+                        <div style="width: 100%;"><strong>Choice of:</strong></div>
                         <select id="prem-bread" class="card-select">
                             <option value="4 Butter Rotis">4 Butter Rotis</option>
                             <option value="3 Triangle Parathas">3 Triangle Parathas</option>
@@ -192,7 +192,7 @@
                         </select>
                     </li>
                     <li>
-                        <div style="width: 100%;"><strong>Side Choice:</strong></div>
+                        <div style="width: 100%;"><strong>Choice of:</strong></div>
                         <select id="prem-side" class="card-select">
                             <option value="Curd">Curd</option>
                             <option value="Chaas">Chaas</option>
@@ -212,9 +212,19 @@
     <section id="delivery-section" class="container" style="padding-bottom: 60px;">
         <div style="background: white; padding: 40px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); text-align: center; max-width: 800px; margin: 0 auto; border: 2px solid #eaeaea;">
             <h2 style="font-size: 2.2rem; color: var(--color-green-dark); margin-bottom: 16px;">Check Delivery Availability</h2>
-            <p style="margin-bottom: 24px; font-size: 1.1rem; color: #555;">Click below to use your device's GPS to check exactly how far you are from our kitchen in Khadoli.</p>
-            <button id="check-location-btn" class="btn btn-primary" style="font-size: 1.1rem; padding: 12px 30px;">📍 Use My Current Location</button>
-            <div id="location-result" style="margin-top: 24px; font-weight: 600; font-size: 1.2rem; color: var(--color-green-dark);"></div>
+            <p style="margin-bottom: 24px; font-size: 1.1rem; color: #555;">Use your device's GPS to check exactly how far you are from our kitchen in Khadoli, or manually check your address below.</p>
+            
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 24px;">
+                <!-- GPS Check -->
+                <button id="check-location-btn" class="btn btn-primary" style="font-size: 1.1rem; padding: 12px 30px;">📍 Use My Current Location</button>
+                <div id="location-result" style="font-weight: 600; font-size: 1.2rem; color: var(--color-green-dark);"></div>
+                
+                <!-- Manual Address Check -->
+                <div style="display: flex; gap: 10px; width: 100%; max-width: 500px; margin-top: 10px;">
+                    <input type="text" id="manual-address" placeholder="Or type your full address here..." style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-family: var(--font-body); font-size: 1rem; outline: none;">
+                    <button onclick="checkManualAddress()" class="btn btn-outline" style="padding: 12px 24px;">Check</button>
+                </div>
+            </div>
             
             <div style="display: flex; justify-content: center; gap: 24px; margin-top: 32px; flex-wrap: wrap;">
                 <div style="background: var(--color-bg-alt); padding: 16px; border-radius: var(--radius-md); width: 200px;">
@@ -310,6 +320,12 @@
                         <option value="Regular Sweet" data-price="10">Regular Sweet</option>
                     </select>
                 </div>
+
+                <!-- Delivery Address Box for Custom Plan -->
+                <div class="custom-group" style="grid-column: 1 / -1; margin-top: 10px;">
+                    <label>Delivery Address (Optional)</label>
+                    <textarea id="custom-address" class="custom-select" rows="2" placeholder="Enter your address so we can confirm your delivery distance..."></textarea>
+                </div>
             </div>
 
             <!-- Live Estimation Box -->
@@ -350,6 +366,17 @@
 
     <!-- Scripts -->
     <script>
+        // --- Manual Address Check ---
+        function checkManualAddress() {
+            let addr = document.getElementById('manual-address').value;
+            if (!addr) {
+                alert('Please enter your address first!');
+                return;
+            }
+            let msg = `Hi! I want to subscribe to a tiffin plan. Can you please confirm if you deliver to this address and if there are any delivery charges?\n\n📍 *Address:* ${addr}`;
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
         // --- Order Standard Plans ---
         function orderMini() {
             let msg = `Hi! I am interested in subscribing to the Mini Tiffin Plan.`;
@@ -421,6 +448,7 @@
             const rotiQty = document.getElementById('custom-roti-qty').value;
             const curd = document.getElementById('custom-curd').value;
             const sweet = document.getElementById('custom-sweet').value;
+            const address = document.getElementById('custom-address').value;
 
             // Grab the live calculated prices to send to WhatsApp too!
             const tiffinPrice = document.getElementById('calc-tiffin').innerText;
@@ -434,11 +462,18 @@
             message += `▪ Breads: ${rotiQty} x ${roti}\n`;
             message += `▪ Side/Beverage: ${curd}\n`;
             message += `▪ Sweet: ${sweet}\n\n`;
+            
+            if (address.trim() !== "") {
+                message += `📍 *Delivery Address:*\n${address}\n\n`;
+            }
+
             message += `*My Website Estimate:*\n- Per Tiffin: ${tiffinPrice}\n- 1 Meal/Day: ${month1}\n- 2 Meals/Day: ${month2}\n\nPlease confirm my plan!`;
 
             window.open(`https://wa.me/919737786796?text=${encodeURIComponent(message)}`, '_blank');
         }
     </script>
+    
+    <!-- We initialize the GPS checker from app.js here just like on index.html -->
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>

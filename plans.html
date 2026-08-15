@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eat Hub | Tiffin Plans</title>
+    <meta name="description" content="Subscribe to Eat Hub's monthly tiffin service for Ghar Jaisa Khana delivered daily.">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .pricing-section { padding: 60px 0; background-color: var(--color-bg-cream); }
+        .pricing-header { text-align: center; max-width: 800px; margin: 0 auto 40px auto; }
+        .deposit-badge { display: inline-block; background-color: #fef3c7; color: #b45309; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 1rem; margin-bottom: 24px; border: 1px solid #fde68a; }
+        
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 20px; }
+        
+        .pricing-card { background: white; border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; box-shadow: var(--shadow-card); border: 2px solid #eaeaea; transition: transform 0.3s, box-shadow 0.3s; position: relative; display: flex; flex-direction: column; }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--color-mustard); }
+        .pricing-card.popular { border-color: var(--color-mustard); background-color: #fffdf5; }
+        
+        .popular-badge { background: var(--color-maroon); color: white; padding: 6px 16px; border-radius: var(--radius-pill); font-weight: 700; font-size: 0.9rem; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); }
+        .plan-name { font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-green-dark); margin-bottom: 10px; line-height: 1.1; }
+        
+        .price-toggle-box { background: #f8f9fa; border-radius: 12px; padding: 16px; margin-bottom: 24px; border: 1px solid #eee; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .price-row:last-child { margin-bottom: 0; padding-top: 8px; border-top: 1px dashed #ddd; }
+        .price-label { font-size: 0.95rem; color: #555; font-weight: 600; text-align: left; }
+        .price-value { font-size: 1.4rem; font-weight: 800; color: var(--color-black); }
+        .price-sub { font-size: 0.8rem; color: var(--color-green-dark); font-weight: 700; }
+        
+        .plan-features { list-style: none; margin-bottom: 32px; text-align: left; flex-grow: 1; }
+        .plan-features li { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: flex-start; gap: 10px; color: #444; }
+        .plan-features li::before { content: '✓'; color: var(--color-green); font-weight: bold; font-size: 1.2rem; }
+        
+        /* Customize Section Styles */
+        .custom-section { padding: 80px 20px; background-color: white; border-top: 1px solid #eaeaea; }
+        .custom-container { max-width: 900px; margin: 0 auto; background: var(--color-bg-cream); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-card); }
+        .custom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 32px; }
+        .custom-group { display: flex; flex-direction: column; text-align: left; }
+        .custom-group label { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: var(--color-green-dark); }
+        .custom-select { padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-family: var(--font-body); font-size: 1rem; background: white; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html">
+                <img src="images/EATHUB%20LOGO.png" alt="Eat Hub Logo" style="height: 100px; width: auto; object-fit: contain;">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="status-pill" id="live-status">Loading Status...</div>
+        </div>
+    </nav>
+
+    <section class="bg-alt" style="padding: 60px 0; text-align: center;">
+        <div class="container pricing-header">
+            <span class="legacy-badge">Monthly Tiffin Plans</span>
+            <h1 style="font-size: 3.5rem; margin-bottom: 16px;">Ghar Jaisa Khana,<br>Every Single Day.</h1>
+            <p style="font-size: 1.15rem; color: #555; margin-bottom: 24px;">All plans are billed for a <strong>28-Day Cycle</strong>. Free delivery within 5km radius (₹10 - ₹20 delivery charge applies beyond 5km).</p>
+            <div class="deposit-badge">
+                * Note: A refundable security deposit of ₹1000 - ₹1500 is required to start your subscription.
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing-section container">
+        <div class="pricing-grid">
+            
+            <!-- Plan 1: Mini -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Mini Tiffin</h3>
+                
+                <div class="price-toggle-box">
+                    <div class="price-row">
+                        <span class="price-label">1 Meal / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch OR Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹2,240</div>
+                            <div class="price-sub">₹80 / tiffin</div>
+                        </div>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">2 Meals / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch AND Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹4,200</div>
+                            <div class="price-sub">₹75 / tiffin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="plan-features">
+                    <li>Dal & Rice</li>
+                    <li>3 Fresh Phulkas</li>
+                    <li>1 Sabji</li>
+                    <li>Salad & Pickle</li>
+                </ul>
+                <a href="https://wa.me/919737786796?text=Hi!%20I%20am%20interested%20in%20subscribing%20to%20the%20Mini%20Tiffin%20Plan." target="_blank" class="btn btn-outline" style="width: 100%;">Choose Mini</a>
+            </div>
+
+            <!-- Plan 2: Regular (Popular) -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <h3 class="plan-name">Regular Thali</h3>
+                
+                <div class="price-toggle-box">
+                    <div class="price-row">
+                        <span class="price-label">1 Meal / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch OR Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹2,800</div>
+                            <div class="price-sub">₹100 / tiffin</div>
+                        </div>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">2 Meals / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch AND Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹5,320</div>
+                            <div class="price-sub">₹95 / tiffin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="plan-features">
+                    <li>Dal & Rice</li>
+                    <li>1 Sabji</li>
+                    <li>4 Phulkas <strong>OR</strong> 3 Triangle Parathas</li>
+                    <li>Curd <strong>OR</strong> Chaas</li>
+                    <li>Salad, Pickle & Papad</li>
+                </ul>
+                <a href="https://wa.me/919737786796?text=Hi!%20I%20am%20interested%20in%20subscribing%20to%20the%20Regular%20Thali%20Plan." target="_blank" class="btn btn-primary" style="width: 100%;">Choose Regular</a>
+            </div>
+
+            <!-- Plan 3: Premium -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Premium Thali</h3>
+                
+                <div class="price-toggle-box">
+                    <div class="price-row">
+                        <span class="price-label">1 Meal / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch OR Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹4,452</div>
+                            <div class="price-sub">₹159 / tiffin</div>
+                        </div>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">2 Meals / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch AND Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹8,344</div>
+                            <div class="price-sub">₹149 / tiffin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="plan-features">
+                    <li>Jira Rice & Dal Fry</li>
+                    <li>Paneer Sabji</li>
+                    <li>4 Butter Rotis <strong>OR</strong> 3 Triangle Parathas <strong>OR</strong> 1 Aloo Paratha</li>
+                    <li>Curd <strong>OR</strong> Chaas <strong>OR</strong> Lassi</li>
+                    <li>Salad, Pickle & Papad</li>
+                    <li>1 Sweet</li>
+                </ul>
+                <a href="https://wa.me/919737786796?text=Hi!%20I%20am%20interested%20in%20subscribing%20to%20the%20Premium%20Thali%20Plan." target="_blank" class="btn btn-outline" style="width: 100%;">Choose Premium</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Build Your Own Thali Section -->
+    <section class="custom-section">
+        <div class="custom-container">
+            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 12px;">Customize Your Thali</h2>
+            <p style="text-align: center; color: #555; font-size: 1.1rem; margin-bottom: 32px;">Build your perfect daily meal. Select your preferred items and we will calculate a custom monthly price for you.</p>
+            
+            <div class="custom-grid">
+                <!-- Rice Options -->
+                <div class="custom-group">
+                    <label>Rice</label>
+                    <select class="custom-select" id="custom-rice">
+                        <option value="Regular Rice">Regular Rice (Base)</option>
+                        <option value="Jira Rice">Jira Rice (+ estimated ₹10)</option>
+                    </select>
+                </div>
+
+                <!-- Dal Options -->
+                <div class="custom-group">
+                    <label>Dal</label>
+                    <select class="custom-select" id="custom-dal">
+                        <option value="Regular Dal">Regular Dal (Base)</option>
+                        <option value="Plain Dal">Plain Dal</option>
+                        <option value="Dal Tadka">Dal Tadka (+ estimated ₹10)</option>
+                        <option value="Dal Fry">Dal Fry (+ estimated ₹15)</option>
+                    </select>
+                </div>
+
+                <!-- Sabji Options -->
+                <div class="custom-group">
+                    <label>Sabji</label>
+                    <select class="custom-select" id="custom-sabji">
+                        <option value="Regular Sabji">Regular Sabji (Base)</option>
+                        <option value="Chole">Chole (+ estimated ₹15)</option>
+                        <option value="Mushroom">Mushroom (+ estimated ₹25)</option>
+                        <option value="Paneer">Paneer (+ estimated ₹30)</option>
+                    </select>
+                </div>
+
+                <!-- Roti Options -->
+                <div class="custom-group">
+                    <label>Breads</label>
+                    <select class="custom-select" id="custom-roti">
+                        <option value="Regular Phulka">Regular Phulka (Base)</option>
+                        <option value="Butter Phulka">Butter Phulka (+ estimated ₹5)</option>
+                        <option value="Triangle Paratha">Triangle Paratha (+ estimated ₹10)</option>
+                        <option value="Aloo Paratha">Aloo Paratha (+ estimated ₹20)</option>
+                        <option value="Pyaaz Paratha">Pyaaz Paratha (+ estimated ₹20)</option>
+                        <option value="Paneer Paratha">Paneer Paratha (+ estimated ₹30)</option>
+                    </select>
+                </div>
+
+                <!-- Beverages/Sides -->
+                <div class="custom-group">
+                    <label>Curd & Beverages</label>
+                    <select class="custom-select" id="custom-curd">
+                        <option value="None">None</option>
+                        <option value="Curd">Curd (+ estimated ₹15)</option>
+                        <option value="Chaas">Chaas (+ estimated ₹15)</option>
+                        <option value="Lassi">Lassi (+ estimated ₹25)</option>
+                    </select>
+                </div>
+
+                <!-- Sweets -->
+                <div class="custom-group">
+                    <label>Dessert</label>
+                    <select class="custom-select" id="custom-sweet">
+                        <option value="None">None</option>
+                        <option value="Regular Sweet">Regular Sweet (+ estimated ₹20)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button onclick="sendCustomPlan()" class="btn btn-primary" style="padding: 16px 40px; font-size: 1.2rem;">Send Custom Plan for Pricing</button>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
+        <div class="container">
+            <img src="images/PRAYAGRAJ%20HOTEL.png" alt="Prayagraj Hotel Logo" style="height: 90px; width: auto; object-fit: contain; border-radius: 10px; margin-bottom: 16px;">
+            <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>
+            <p style="color: #aaa; font-size: 0.9rem;">526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu</p>
+            <p style="margin-top: 32px; color: #666; font-size: 0.8rem;">© 2026 Eat Hub. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function sendCustomPlan() {
+            const rice = document.getElementById('custom-rice').value;
+            const dal = document.getElementById('custom-dal').value;
+            const sabji = document.getElementById('custom-sabji').value;
+            const roti = document.getElementById('custom-roti').value;
+            const curd = document.getElementById('custom-curd').value;
+            const sweet = document.getElementById('custom-sweet').value;
+
+            let message = `Hi! I would like to get a pricing quote for a Custom Monthly Tiffin Plan.\n\nHere are my selections:\n`;
+            message += `▪ Rice: ${rice}\n`;
+            message += `▪ Dal: ${dal}\n`;
+            message += `▪ Sabji: ${sabji}\n`;
+            message += `▪ Bread: ${roti}\n`;
+            message += `▪ Side/Beverage: ${curd}\n`;
+            message += `▪ Sweet: ${sweet}\n\n`;
+            message += `Please let me know the monthly cost for 1 meal/day and 2 meals/day!`;
+
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

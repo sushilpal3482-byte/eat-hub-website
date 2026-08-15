@@ -41,6 +41,7 @@
     </style>
 </head>
 <body>
+    <!-- Top Navigation Bar -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html">
@@ -49,6 +50,7 @@
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="menu.html">Menu</a>
+                <a href="plans.html">Plans</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -56,6 +58,7 @@
         </div>
     </nav>
 
+    <!-- Header Section -->
     <section class="bg-alt" style="padding: 60px 0; text-align: center;">
         <div class="container pricing-header">
             <span class="legacy-badge">Monthly Tiffin Plans</span>
@@ -67,10 +70,8 @@
         </div>
     </section>
 
+    <!-- Pricing Cards Section -->
     <section class="pricing-section container">
-        <div class="pricing-grid">
-            
-          <section class="pricing-section container">
         <div class="pricing-grid">
             
             <!-- Plan 1: Mini -->
@@ -86,7 +87,6 @@
                         </div>
                     </div>
                     <div class="price-row">
-                        <!-- Changed AND to & -->
                         <span class="price-label">2 Meals / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch & Dinner)</span></span>
                         <div style="text-align: right;">
                             <div class="price-value">₹4,200</div>
@@ -118,7 +118,6 @@
                         </div>
                     </div>
                     <div class="price-row">
-                        <!-- Changed AND to & -->
                         <span class="price-label">2 Meals / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch & Dinner)</span></span>
                         <div style="text-align: right;">
                             <div class="price-value">₹5,320</div>
@@ -130,7 +129,6 @@
                 <ul class="plan-features">
                     <li>Dal & Rice</li>
                     <li>1 Sabji</li>
-                    <!-- Clarified options -->
                     <li><strong>Choice of:</strong> 4 Phulkas or 3 Triangle Parathas</li>
                     <li><strong>Choice of:</strong> Curd or Chaas</li>
                     <li>Salad, Pickle & Papad</li>
@@ -151,7 +149,6 @@
                         </div>
                     </div>
                     <div class="price-row">
-                        <!-- Changed AND to & -->
                         <span class="price-label">2 Meals / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch & Dinner)</span></span>
                         <div style="text-align: right;">
                             <div class="price-value">₹8,344</div>
@@ -163,7 +160,6 @@
                 <ul class="plan-features">
                     <li>Jira Rice & Dal Fry</li>
                     <li>Paneer Sabji</li>
-                    <!-- Clarified options and fixed text wrapping -->
                     <li><strong>Choice of:</strong> 4 Butter Rotis, 3 Triangle Parathas, or 1 Aloo Paratha</li>
                     <li><strong>Choice of:</strong> Curd, Chaas, or Lassi</li>
                     <li>Salad, Pickle & Papad</li>
@@ -174,7 +170,7 @@
 
         </div>
     </section>
-            
+
     <!-- Build Your Own Thali Section -->
     <section class="custom-section">
         <div class="custom-container">
@@ -253,6 +249,7 @@
         </div>
     </section>
 
+    <!-- Footer -->
     <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
             <img src="images/PRAYAGRAJ%20HOTEL.png" alt="Prayagraj Hotel Logo" style="height: 90px; width: auto; object-fit: contain; border-radius: 10px; margin-bottom: 16px;">
@@ -262,6 +259,7 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script>
         function sendCustomPlan() {
             const rice = document.getElementById('custom-rice').value;

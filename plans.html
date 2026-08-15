@@ -28,9 +28,13 @@
         .price-sub { font-size: 0.8rem; color: var(--color-green-dark); font-weight: 700; }
         
         .plan-features { list-style: none; margin-bottom: 32px; text-align: left; flex-grow: 1; }
-        .plan-features li { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: flex-start; gap: 10px; color: #444; }
-        .plan-features li::before { content: '✓'; color: var(--color-green); font-weight: bold; font-size: 1.2rem; }
+        .plan-features li { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: flex-start; gap: 10px; color: #444; flex-wrap: wrap; }
+        .plan-features li::before { content: '✓'; color: var(--color-green); font-weight: bold; font-size: 1.2rem; margin-top: -2px; }
         
+        /* New Dropdown Styles for Cards */
+        .card-select { width: 100%; padding: 8px 12px; margin-top: 6px; margin-left: 24px; border: 1px solid #ddd; border-radius: 8px; font-family: var(--font-body); font-size: 0.95rem; background-color: #f9f9f9; color: #333; cursor: pointer; outline: none; }
+        .card-select:focus { border-color: var(--color-mustard); }
+
         /* Customize Section Styles */
         .custom-section { padding: 80px 20px; background-color: white; border-top: 1px solid #eaeaea; }
         .custom-container { max-width: 900px; margin: 0 auto; background: var(--color-bg-cream); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-card); }
@@ -101,7 +105,7 @@
                     <li>1 Sabji</li>
                     <li>Salad & Pickle</li>
                 </ul>
-                <a href="https://wa.me/919737786796?text=Hi!%20I%20am%20interested%20in%20subscribing%20to%20the%20Mini%20Tiffin%20Plan." target="_blank" class="btn btn-outline" style="width: 100%;">Choose Mini</a>
+                <button onclick="orderMini()" class="btn btn-outline" style="width: 100%;">Choose Mini</button>
             </div>
 
             <!-- Plan 2: Regular (Popular) -->
@@ -129,11 +133,23 @@
                 <ul class="plan-features">
                     <li>Dal & Rice</li>
                     <li>1 Sabji</li>
-                    <li><strong>Choice of:</strong> 4 Phulkas or 3 Triangle Parathas</li>
-                    <li><strong>Choice of:</strong> Curd or Chaas</li>
+                    <li>
+                        <div style="width: 100%;"><strong>Bread Choice:</strong></div>
+                        <select id="reg-bread" class="card-select">
+                            <option value="4 Phulkas">4 Phulkas</option>
+                            <option value="3 Triangle Parathas">3 Triangle Parathas</option>
+                        </select>
+                    </li>
+                    <li>
+                        <div style="width: 100%;"><strong>Side Choice:</strong></div>
+                        <select id="reg-side" class="card-select">
+                            <option value="Curd">Curd</option>
+                            <option value="Chaas">Chaas</option>
+                        </select>
+                    </li>
                     <li>Salad, Pickle & Papad</li>
                 </ul>
-                <a href="https://wa.me/919737786796?text=Hi!%20I%20am%20interested%20in%20subscribing%20to%20the%20Regular%20Thali%20Plan." target="_blank" class="btn btn-primary" style="width: 100%;">Choose Regular</a>
+                <button onclick="orderRegular()" class="btn btn-primary" style="width: 100%;">Choose Regular</button>
             </div>
 
             <!-- Plan 3: Premium -->
@@ -160,12 +176,26 @@
                 <ul class="plan-features">
                     <li>Jira Rice & Dal Fry</li>
                     <li>Paneer Sabji</li>
-                    <li><strong>Choice of:</strong> 4 Butter Rotis, 3 Triangle Parathas, or 1 Aloo Paratha</li>
-                    <li><strong>Choice of:</strong> Curd, Chaas, or Lassi</li>
+                    <li>
+                        <div style="width: 100%;"><strong>Bread Choice:</strong></div>
+                        <select id="prem-bread" class="card-select">
+                            <option value="4 Butter Rotis">4 Butter Rotis</option>
+                            <option value="3 Triangle Parathas">3 Triangle Parathas</option>
+                            <option value="1 Aloo Paratha">1 Aloo Paratha</option>
+                        </select>
+                    </li>
+                    <li>
+                        <div style="width: 100%;"><strong>Side Choice:</strong></div>
+                        <select id="prem-side" class="card-select">
+                            <option value="Curd">Curd</option>
+                            <option value="Chaas">Chaas</option>
+                            <option value="Lassi">Lassi</option>
+                        </select>
+                    </li>
                     <li>Salad, Pickle & Papad</li>
                     <li>1 Sweet</li>
                 </ul>
-                <a href="https://wa.me/919737786796?text=Hi!%20I%20am%20interested%20in%20subscribing%20to%20the%20Premium%20Thali%20Plan." target="_blank" class="btn btn-outline" style="width: 100%;">Choose Premium</a>
+                <button onclick="orderPremium()" class="btn btn-outline" style="width: 100%;">Choose Premium</button>
             </div>
 
         </div>
@@ -261,6 +291,25 @@
 
     <!-- Scripts -->
     <script>
+        function orderMini() {
+            let msg = `Hi! I am interested in subscribing to the Mini Tiffin Plan.`;
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function orderRegular() {
+            let bread = document.getElementById('reg-bread').value;
+            let side = document.getElementById('reg-side').value;
+            let msg = `Hi! I am interested in subscribing to the Regular Thali Plan.\n\nMy Choices:\n▪ Bread: ${bread}\n▪ Side: ${side}`;
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function orderPremium() {
+            let bread = document.getElementById('prem-bread').value;
+            let side = document.getElementById('prem-side').value;
+            let msg = `Hi! I am interested in subscribing to the Premium Thali Plan.\n\nMy Choices:\n▪ Bread: ${bread}\n▪ Side: ${side}`;
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
         function sendCustomPlan() {
             const rice = document.getElementById('custom-rice').value;
             const dal = document.getElementById('custom-dal').value;

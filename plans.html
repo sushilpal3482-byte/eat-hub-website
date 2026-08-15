@@ -306,7 +306,7 @@
                     <div class="est-item">
                         <div class="est-title">2 Meals / Day (28 Days)</div>
                         <div class="est-price" id="calc-month-2" style="color: var(--color-green-dark);">₹0</div>
-                        <div class="est-discount-note">Includes ₹5 discount per tiffin</div>
+                        <div class="est-discount-note">Includes 5.45% discount</div>
                     </div>
                 </div>
             </div>
@@ -378,7 +378,9 @@
             const perTiffinPrice = basePrice + priceRice + priceDal + priceSabji + totalBreadCost + priceCurd + priceSweet;
             
             const monthlyOneMeal = perTiffinPrice * 28;
-            const monthlyTwoMeals = (perTiffinPrice - 5) * 28 * 2; // Applies ₹5 discount per tiffin
+            
+            // Applies 5.45% discount and rounds to the nearest whole number
+            const monthlyTwoMeals = Math.round((perTiffinPrice * 28 * 2) * (1 - 0.0545)); 
 
             // Update UI
             document.getElementById('calc-tiffin').innerText = `₹${perTiffinPrice}`;

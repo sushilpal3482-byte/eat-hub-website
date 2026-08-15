@@ -120,3 +120,44 @@ section { padding: 60px 0; }
   .menu-grid { grid-template-columns: 1fr; }
   .modal-content { padding: 16px; }
 }
+
+/* --- Hero Slider Animations and Setup --- */
+.hero-slider {
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  display: none; /* Hide all slides by default */
+  animation: fadeEffect 1s ease-in-out;
+}
+
+.slide.active {
+  display: flex; /* Show only the active slide */
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+/* Dots Navigation */
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.dot {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  background-color: #d1d5db;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active, .dot:hover {
+  background-color: var(--color-mustard, #eab308); 
+}

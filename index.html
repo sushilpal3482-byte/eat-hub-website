@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- NAVIGATION BAR MUST STAY AT THE TOP -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html">
@@ -25,10 +26,10 @@
 
     <div id="sunday-banner" style="display: none; background: var(--color-mustard); text-align: center; padding: 12px; font-weight: 700; font-family: var(--font-heading); font-size: 1.1rem;"></div>
 
-    <!-- Hero Slider Section (Replaced Static Hero) -->
+    <!-- HERO SLIDER SECTION (Placed directly below navbar) -->
     <section class="hero-slider bg-alt" style="padding-top: 40px; padding-bottom: 40px;">
       
-      <!-- Slide 1: Main (Active by default) -->
+      <!-- Slide 1: Main -->
       <div class="slide active container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
         <div class="slide-content" style="flex: 1; min-width: 300px;">
           <span class="legacy-badge">Since 2003 · Formerly Prayagraj Hotel</span>
@@ -45,8 +46,8 @@
         </div>
       </div>
 
-      <!-- Slide 2: Bulk Order Template -->
-      <div class="slide container" style="flex-wrap: wrap; align-items: center; gap: 40px;">
+      <!-- Slide 2: Bulk Order -->
+      <div class="slide container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
         <div class="slide-content" style="flex: 1; min-width: 300px;">
           <span class="legacy-badge" style="background: #8C99A8; color: white;">Bulk Orders & Catering</span>
           <h1 style="font-size: 3rem; margin-bottom: 8px;">Big Gatherings?<br>We’ve Got You Covered.</h1>
@@ -58,13 +59,12 @@
           </div>
         </div>
         <div class="slide-image" style="flex: 1; min-width: 300px; text-align: center;">
-          <!-- Make sure to add a relevant bulk order image to your images folder later -->
-          <img src="images/VEG%20THALI.jpeg" alt="Bulk Catering Orders" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
+          <img src="images/SAMOSA%20BUCKET.png" alt="Bulk Catering Orders" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
         </div>
       </div>
 
       <!-- Slide 3: No Commissions -->
-      <div class="slide container" style="flex-wrap: wrap; align-items: center; gap: 40px;">
+      <div class="slide container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
         <div class="slide-content" style="flex: 1; min-width: 300px;">
           <span class="legacy-badge" style="background: #14532d; color: white;">Order Direct, Save More</span>
           <h1 style="font-size: 3rem; margin-bottom: 8px;">No Hidden Fees.<br>Just Honest Prices.</h1>
@@ -75,13 +75,12 @@
           </div>
         </div>
         <div class="slide-image" style="flex: 1; min-width: 300px; text-align: center;">
-          <!-- Make sure to add a relevant delivery image to your images folder later -->
-          <img src="images/VEG%20THALI.jpeg" alt="Direct Delivery" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
+          <img src="images/ALOO PARATHA.jpeg" alt="Direct Delivery" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
         </div>
       </div>
 
       <!-- Slide 4: Daily Meals -->
-      <div class="slide container" style="flex-wrap: wrap; align-items: center; gap: 40px;">
+      <div class="slide container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
         <div class="slide-content" style="flex: 1; min-width: 300px;">
           <span class="legacy-badge">Daily Meal Subscriptions</span>
           <h1 style="font-size: 3rem; margin-bottom: 8px;">Everyday Meals,<br>Sorted for the Month.</h1>
@@ -92,8 +91,7 @@
           </div>
         </div>
         <div class="slide-image" style="flex: 1; min-width: 300px; text-align: center;">
-          <!-- Make sure to add a relevant tiffin image to your images folder later -->
-          <img src="images/VEG%20THALI.jpeg" alt="Tiffin Service" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
+          <img src="images/DAL-RICE%20BOWL.jpeg" alt="Tiffin Service" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
         </div>
       </div>
 
@@ -107,7 +105,7 @@
 
     </section>
 
-    <!-- Rest of your original page -->
+    <!-- REMAINDER OF THE PAGE -->
     <section class="offers-section">
         <div class="container">
             <div class="offers-header">
@@ -255,7 +253,6 @@
 
    <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
-            <!-- FIXED FILENAME: .png instead of .JPG -->
             <img src="images/PRAYAGRAJ%20HOTEL.png" alt="Prayagraj Hotel Logo" style="height: 90px; width: auto; object-fit: contain; border-radius: 10px; margin-bottom: 16px;">
             <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>
             <p style="color: #aaa; font-size: 0.9rem;">526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu</p>

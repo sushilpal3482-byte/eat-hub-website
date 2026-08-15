@@ -319,7 +319,64 @@ function initOffersScroll() {
     }
 }
 
+// --- HERO SLIDER LOGIC ---
+let slideIndex = 1;
+let slideTimer;
+
+function initSlider() {
+    let slides = document.getElementsByClassName("slide");
+    if (slides.length > 0) {
+        showSlides(slideIndex);
+        slideTimer = setInterval(autoSlide, 5000); // Auto change every 5 seconds
+    }
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+    resetTimer();
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("slide");
+    let dots = document.getElementsByClassName("dot");
+    
+    // Safety check in case elements aren't present
+    if (slides.length === 0) return; 
+
+    if (n > slides.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = slides.length }
+    
+    // Hide all slides and deactivate all dots
+    for (i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].classList.remove("active");
+    }
+    
+    // Show active slide and dot
+    slides[slideIndex - 1].classList.add("active");
+    dots[slideIndex - 1].classList.add("active");
+}
+
+function autoSlide() {
+    slideIndex++;
+    showSlides(slideIndex);
+}
+
+function resetTimer() {
+    clearInterval(slideTimer);
+    slideTimer = setInterval(autoSlide, 5000);
+}
+
+// --- INITIALIZATION ON LOAD ---
 document.addEventListener('DOMContentLoaded', () => {
-    updateStatus(); setInterval(updateStatus, 60000);
-    checkSundaySpecial(); renderFeaturedMenu(); initDeliveryChecker(); initOffersScroll(); 
+    updateStatus(); 
+    setInterval(updateStatus, 60000);
+    checkSundaySpecial(); 
+    renderFeaturedMenu(); 
+    initDeliveryChecker(); 
+    initOffersScroll(); 
+    initSlider(); // Added slider initialization
 });

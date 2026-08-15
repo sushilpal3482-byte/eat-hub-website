@@ -134,6 +134,21 @@ section { padding: 60px 0; }
 
 .slide.active {
   display: flex; /* Show only the active slide */
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 40px;
+}
+
+/* Layout for the text and image inside the slide */
+.slide-content {
+  flex: 1;
+  min-width: 300px;
+}
+
+.slide-image {
+  flex: 1; 
+  min-width: 300px; 
+  text-align: center;
 }
 
 @keyframes fadeEffect {

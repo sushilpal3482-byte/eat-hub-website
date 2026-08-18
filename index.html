@@ -3,11 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eat Hub | Fresh & Tasty</title>
-    <meta name="description" content="Ghar Jaisa Khana in Khadoli & Khanvel. Budget-friendly, everyday food since 2003.">
+    <title>Eat Hub | Tiffin Plans</title>
+    <meta name="description" content="Subscribe to Eat Hub's monthly tiffin service for Ghar Jaisa Khana delivered daily.">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .pricing-section { padding: 60px 0 40px 0; background-color: var(--color-bg-cream); }
+        .pricing-header { text-align: center; max-width: 800px; margin: 0 auto 40px auto; }
+        .deposit-badge { display: inline-block; background-color: #fef3c7; color: #b45309; padding: 8px 16px; border-radius: 8px; font-weight: 700; font-size: 1rem; margin-bottom: 24px; border: 1px solid #fde68a; }
+        
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 0 20px; }
+        
+        .pricing-card { background: white; border-radius: var(--radius-lg); padding: 40px 30px; text-align: center; box-shadow: var(--shadow-card); border: 2px solid #eaeaea; transition: transform 0.3s, box-shadow 0.3s; position: relative; display: flex; flex-direction: column; }
+        .pricing-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: var(--color-mustard); }
+        .pricing-card.popular { border-color: var(--color-mustard); background-color: #fffdf5; }
+        
+        .popular-badge { background: var(--color-maroon); color: white; padding: 6px 16px; border-radius: var(--radius-pill); font-weight: 700; font-size: 0.9rem; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); }
+        .plan-name { font-family: var(--font-heading); font-size: 2.2rem; color: var(--color-green-dark); margin-bottom: 10px; line-height: 1.1; }
+        
+        .price-toggle-box { background: #f8f9fa; border-radius: 12px; padding: 16px; margin-bottom: 24px; border: 1px solid #eee; }
+        .price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .price-row:last-child { margin-bottom: 0; padding-top: 8px; border-top: 1px dashed #ddd; }
+        .price-label { font-size: 0.95rem; color: #555; font-weight: 600; text-align: left; }
+        .price-value { font-size: 1.4rem; font-weight: 800; color: var(--color-black); }
+        .price-sub { font-size: 0.8rem; color: var(--color-green-dark); font-weight: 700; }
+        
+        .plan-features { list-style: none; margin-bottom: 32px; text-align: left; flex-grow: 1; }
+        .plan-features li { margin-bottom: 12px; font-size: 1rem; display: flex; align-items: flex-start; gap: 10px; color: #444; flex-wrap: wrap; }
+        .plan-features li::before { content: '✓'; color: var(--color-green); font-weight: bold; font-size: 1.2rem; margin-top: -2px; }
+        
+        .card-select { width: 100%; padding: 8px 12px; margin-top: 6px; margin-left: 24px; border: 1px solid #ddd; border-radius: 8px; font-family: var(--font-body); font-size: 0.95rem; background-color: #f9f9f9; color: #333; cursor: pointer; outline: none; }
+        .card-select:focus { border-color: var(--color-mustard); }
+
+        /* Customize Section Styles */
+        .custom-section { padding: 80px 20px; background-color: white; border-top: 1px solid #eaeaea; }
+        .custom-container { max-width: 900px; margin: 0 auto; background: var(--color-bg-cream); border-radius: var(--radius-lg); padding: 40px; box-shadow: var(--shadow-card); }
+        .custom-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; margin-top: 32px; }
+        .custom-group { display: flex; flex-direction: column; text-align: left; }
+        .custom-group label { font-family: var(--font-heading); font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: var(--color-green-dark); }
+        .custom-select { padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-family: var(--font-body); font-size: 1rem; background: white; cursor: pointer; outline: none; transition: border-color 0.2s;}
+        .custom-select:focus { border-color: var(--color-mustard); }
+        
+        .estimation-box { background: #fffdf5; border: 2px solid var(--color-mustard); border-radius: 12px; padding: 24px; margin-top: 40px; text-align: center; }
+        .est-flex { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; margin-top: 16px; }
+        .est-item { flex: 1; min-width: 150px; }
+        .est-title { font-size: 0.9rem; color: #666; font-weight: 600; margin-bottom: 4px; }
+        .est-price { font-size: 1.8rem; font-weight: 800; color: var(--color-black); }
+        .est-discount-note { font-size: 0.8rem; color: var(--color-maroon); font-weight: 700; margin-top: 4px; }
+    </style>
 </head>
 <body>
+    <!-- Top Navigation Bar -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html">
@@ -16,6 +61,7 @@
             <div class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="menu.html">Menu</a>
+                <a href="plans.html">Plans</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -23,190 +69,411 @@
         </div>
     </nav>
 
-    <div id="sunday-banner" style="display: none; background: var(--color-mustard); text-align: center; padding: 12px; font-weight: 700; font-family: var(--font-heading); font-size: 1.1rem;"></div>
-
-    <section class="bg-alt">
-        <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 40px;">
-            <div style="flex: 1; min-width: 300px;">
-                <span class="legacy-badge">Since 2003 · Formerly Prayagraj Hotel</span>
-                <h1 style="font-size: 3rem; margin-bottom: 8px;">Ghar Jaisa Khana,<br>Ab Ek Click Par.</h1>
-                <h2 style="font-family: var(--font-body); font-weight: 500; font-size: 1.5rem; color: #555; margin-bottom: 24px;">घर जैसा खाना, अब एक क्लिक पर।</h2>
-                <p style="margin-bottom: 32px; font-size: 1.1rem;">Fresh, home-style North Indian meals delivered across Khadoli, Khanvel, and Rakholi. No platform commissions, just honest food.</p>
-                <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-                    <button onclick="document.getElementById('delivery-section').scrollIntoView({behavior: 'smooth'})" class="btn btn-primary">Check Delivery</button>
-                    <a href="menu.html" class="btn btn-outline">View Full Menu</a>
-                </div>
-            </div>
-            
-            <div style="flex: 1; min-width: 300px; text-align: center;">
-                <img src="images/VEG%20THALI.jpeg" alt="Delicious North Indian Thali" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
+    <!-- Header Section -->
+    <section class="bg-alt" style="padding: 60px 0; text-align: center;">
+        <div class="container pricing-header">
+            <span class="legacy-badge">Monthly Tiffin Plans</span>
+            <h1 style="font-size: 3.5rem; margin-bottom: 16px;">Ghar Jaisa Khana,<br>Every Single Day.</h1>
+            <p style="font-size: 1.15rem; color: #555; margin-bottom: 24px;">All plans are billed for a <strong>28-Day Cycle</strong>. Free delivery within 5km radius (₹10 - ₹20 delivery charge applies beyond 5km).</p>
+            <div class="deposit-badge">
+                * Note: A refundable security deposit of ₹1000 - ₹1500 is required to start your subscription.
             </div>
         </div>
     </section>
 
-    <section class="offers-section">
-        <div class="container">
-            <div class="offers-header">
-                <h2>Top offers today</h2>
-                <div class="scroll-arrows">
-                    <button class="arrow-btn" id="scroll-left">‹</button>
-                    <button class="arrow-btn" id="scroll-right">›</button>
-                </div>
-            </div>
+    <!-- Pricing Cards Section -->
+    <section class="pricing-section container">
+        <div class="pricing-grid">
             
-            <div class="offers-track-container">
-                <div class="offers-track" id="offers-track">
-                    <a href="menu.html" class="offer-card">
-                        <div class="offer-title">THALI</div>
-                        <div class="offer-price">₹149</div>
-                        <div class="offer-image-container">
-                            <img src="images/VEG%20THALI.jpeg" alt="Thali">
+            <!-- Plan 1: Mini -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Mini Tiffin</h3>
+                
+                <div class="price-toggle-box">
+                    <div class="price-row">
+                        <span class="price-label">1 Meal / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch OR Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹2,240</div>
+                            <div class="price-sub">₹80 / tiffin</div>
                         </div>
-                    </a>
-                    
-                    <a href="menu.html" class="offer-card">
-                        <div class="offer-title">SAMOSA</div>
-                        <div class="offer-price">₹60</div>
-                        <div class="offer-image-container">
-                            <img src="images/SAMOSA%20BUCKET.png" alt="Samosa Bucket">
-                        </div>
-                    </a>
-                    
-                    <a href="menu.html" class="offer-card">
-                        <div class="offer-title">BOWL</div>
-                        <div class="offer-price">₹59</div>
-                        <div class="offer-image-container">
-                            <img src="images/DAL-RICE%20BOWL.jpeg" alt="Dal Rice Bowl">
-                        </div>
-                    </a>
-
-                    <a href="menu.html" class="offer-card">
-                        <div class="offer-title">PANEER</div>
-                        <div class="offer-price">₹169</div>
-                        <div class="offer-image-container">
-                            <img src="images/PANEER.jpeg" alt="Paneer Thali">
-                        </div>
-                    </a>
-
-                    <div onclick="openBulkModal()" class="offer-card-promo" style="background-color: #8C99A8; color: white; text-align: center; cursor: pointer;">
-                        <div>
-                            <div style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; line-height: 1.1; margin-top: 10px;">BULK<br>ORDER</div>
-                            <div style="font-size: 0.85rem; font-weight: 600; margin-top: 8px;">For Parties</div>
-                        </div>
-                        <div style="background: #6C7A89; border-radius: 8px; padding: 6px; font-weight: 700; font-size: 1rem;">CREATE</div>
                     </div>
-
-                    <a href="menu.html" class="offer-card-promo" style="background-color: #D3D8E0; color: #444; text-align: center;">
-                        <div>
-                            <div style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; line-height: 1.1; margin-top: 10px;">KHADOLI<br>SPECIAL</div>
+                    <div class="price-row">
+                        <span class="price-label">2 Meals / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch & Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹4,200</div>
+                            <div class="price-sub">₹75 / tiffin</div>
                         </div>
-                        <img src="https://cdn-icons-png.flaticon.com/512/2830/2830305.png" style="width: 50px; margin: 0 auto;">
-                        <div style="color: #6C7A89; font-weight: 700; font-size: 0.9rem;">Free Delivery</div>
-                    </a>
+                    </div>
                 </div>
+
+                <ul class="plan-features">
+                    <li>Dal & Rice</li>
+                    <li>3 Fresh Phulkas</li>
+                    <li>1 Sabji</li>
+                    <li>Salad & Pickle</li>
+                </ul>
+                <button onclick="orderMini()" class="btn btn-outline" style="width: 100%;">Choose Mini</button>
             </div>
-            <p style="text-align: right; font-size: 0.85rem; color: #777; margin-top: 8px;">*Minimum order for morning/evening snacks is ₹200.</p>
+
+            <!-- Plan 2: Regular (Popular) -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <h3 class="plan-name">Regular Thali</h3>
+                
+                <div class="price-toggle-box">
+                    <div class="price-row">
+                        <span class="price-label">1 Meal / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch OR Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹2,800</div>
+                            <div class="price-sub">₹100 / tiffin</div>
+                        </div>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">2 Meals / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch & Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹5,320</div>
+                            <div class="price-sub">₹95 / tiffin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="plan-features">
+                    <li>Dal & Rice</li>
+                    <li>1 Sabji</li>
+                    <li>
+                        <div style="width: 100%;"><strong>Choice of:</strong></div>
+                        <select id="reg-bread" class="card-select">
+                            <option value="4 Phulkas">4 Phulkas</option>
+                            <option value="3 Triangle Parathas">3 Triangle Parathas</option>
+                        </select>
+                    </li>
+                    <li>
+                        <div style="width: 100%;"><strong>Choice of:</strong></div>
+                        <select id="reg-side" class="card-select">
+                            <option value="Curd">Curd</option>
+                            <option value="Chaas">Chaas</option>
+                        </select>
+                    </li>
+                    <li>Salad, Pickle & Papad</li>
+                </ul>
+                <button onclick="orderRegular()" class="btn btn-primary" style="width: 100%;">Choose Regular</button>
+            </div>
+
+            <!-- Plan 3: Premium -->
+            <div class="pricing-card">
+                <h3 class="plan-name">Premium Thali</h3>
+                
+                <div class="price-toggle-box">
+                    <div class="price-row">
+                        <span class="price-label">1 Meal / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch OR Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹4,452</div>
+                            <div class="price-sub">₹159 / tiffin</div>
+                        </div>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">2 Meals / Day<br><span style="font-size:0.8rem; font-weight:400;">(Lunch & Dinner)</span></span>
+                        <div style="text-align: right;">
+                            <div class="price-value">₹8,344</div>
+                            <div class="price-sub">₹149 / tiffin</div>
+                        </div>
+                    </div>
+                </div>
+
+                <ul class="plan-features">
+                    <li>Jira Rice & Dal Fry</li>
+                    <li>Paneer Sabji</li>
+                    <li>
+                        <div style="width: 100%;"><strong>Choice of:</strong></div>
+                        <select id="prem-bread" class="card-select">
+                            <option value="4 Butter Rotis">4 Butter Rotis</option>
+                            <option value="3 Triangle Parathas">3 Triangle Parathas</option>
+                            <option value="1 Aloo Paratha">1 Aloo Paratha</option>
+                        </select>
+                    </li>
+                    <li>
+                        <div style="width: 100%;"><strong>Choice of:</strong></div>
+                        <select id="prem-side" class="card-select">
+                            <option value="Curd">Curd</option>
+                            <option value="Chaas">Chaas</option>
+                            <option value="Lassi">Lassi</option>
+                        </select>
+                    </li>
+                    <li>Salad, Pickle & Papad</li>
+                    <li>1 Sweet</li>
+                </ul>
+                <button onclick="orderPremium()" class="btn btn-outline" style="width: 100%;">Choose Premium</button>
+            </div>
+
         </div>
     </section>
 
-    <section id="delivery-section" class="container">
-        <h2 style="text-align: center; margin-bottom: 32px; font-size: 2.2rem;">Delivery Zones</h2>
-        <div style="background: white; padding: 40px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); text-align: center; max-width: 800px; margin: 0 auto;">
-            <p style="margin-bottom: 24px; font-size: 1.1rem;">Click below to check your exact delivery fee based on your location. We deliver up to 7km from Khadoli.</p>
-            <button id="check-location-btn" class="btn btn-primary">📍 Use My Current Location</button>
-            <div id="location-result" style="margin-top: 24px; font-weight: 600; font-size: 1.2rem; color: var(--color-green-dark);"></div>
+    <!-- Location Delivery Checker Section -->
+    <section id="delivery-section" class="container" style="padding-bottom: 60px;">
+        <div style="background: white; padding: 40px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); text-align: center; max-width: 800px; margin: 0 auto; border: 2px solid #eaeaea;">
+            <h2 style="font-size: 2.2rem; color: var(--color-green-dark); margin-bottom: 16px;">Check Delivery Availability</h2>
+            <p style="margin-bottom: 24px; font-size: 1.1rem; color: #555;">Use your device's GPS to check exactly how far you are from our kitchen in Khadoli, or manually check your address below.</p>
             
-            <div style="display: flex; justify-content: center; gap: 24px; margin-top: 40px; flex-wrap: wrap;">
-                <div style="background: var(--color-bg-alt); padding: 20px; border-radius: var(--radius-md); width: 220px;">
-                    <h3 style="margin-bottom: 4px;">Khadoli</h3>
-                    <p style="font-size: 0.9rem; color: #555;">Industrial Area<br><strong>Free Delivery</strong></p>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 16px; margin-bottom: 24px;">
+                <!-- GPS Check -->
+                <button id="check-location-btn" class="btn btn-primary" style="font-size: 1.1rem; padding: 12px 30px;">📍 Use My Current Location</button>
+                <div id="location-result" style="font-weight: 600; font-size: 1.2rem; color: var(--color-green-dark);"></div>
+                
+                <!-- Manual Address Check -->
+                <div style="display: flex; gap: 10px; width: 100%; max-width: 500px; margin-top: 10px;">
+                    <input type="text" id="manual-address" placeholder="Or type your full address here..." style="flex: 1; padding: 12px; border-radius: 8px; border: 1px solid #ccc; font-family: var(--font-body); font-size: 1rem; outline: none;">
+                    <button onclick="checkManualAddress()" class="btn btn-outline" style="padding: 12px 24px;">Check</button>
                 </div>
-                <div style="background: var(--color-bg-alt); padding: 20px; border-radius: var(--radius-md); width: 220px;">
-                    <h3 style="margin-bottom: 4px;">Khanvel</h3>
-                    <p style="font-size: 0.9rem; color: #555;">Residential Area<br><strong>Distance Fee over 5km</strong></p>
+            </div>
+            
+            <div style="display: flex; justify-content: center; gap: 24px; margin-top: 32px; flex-wrap: wrap;">
+                <div style="background: var(--color-bg-alt); padding: 16px; border-radius: var(--radius-md); width: 200px;">
+                    <h3 style="margin-bottom: 4px; font-size: 1.2rem;">0 - 5 km</h3>
+                    <p style="font-size: 0.9rem; color: #555;"><strong>Free Delivery</strong></p>
                 </div>
-                <div style="background: var(--color-bg-alt); padding: 20px; border-radius: var(--radius-md); width: 220px;">
-                    <h3 style="margin-bottom: 4px;">Rakholi</h3>
-                    <p style="font-size: 0.9rem; color: #555;">Mixed Zone<br><strong>Check distance for fee</strong></p>
+                <div style="background: var(--color-bg-alt); padding: 16px; border-radius: var(--radius-md); width: 200px;">
+                    <h3 style="margin-bottom: 4px; font-size: 1.2rem;">Above 5 km</h3>
+                    <p style="font-size: 0.9rem; color: #555;"><strong>₹10 - ₹20 Fee</strong></p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="bg-alt">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 8px; font-size: 2.2rem;">Today's Lunch Thali</h2>
-            <p style="text-align: center; margin-bottom: 32px; color: #555;">Bestsellers straight from our family kitchen</p>
-            <div id="featured-menu" class="menu-grid"></div>
+    <!-- Build Your Own Thali Section -->
+    <section class="custom-section">
+        <div class="custom-container">
+            <h2 style="font-size: 2.5rem; text-align: center; margin-bottom: 12px;">Customize Your Thali</h2>
+            <p style="text-align: center; color: #555; font-size: 1.1rem; margin-bottom: 32px;">Build your perfect daily meal. Watch the estimated price update automatically below.</p>
+            
+            <div class="custom-grid">
+                <!-- Rice Options -->
+                <div class="custom-group">
+                    <label>Rice</label>
+                    <select class="custom-select" id="custom-rice" onchange="calculateEstimate()">
+                        <option value="Regular Rice" data-price="0">Regular Rice</option>
+                        <option value="Jira Rice" data-price="5">Jira Rice</option>
+                    </select>
+                </div>
+
+                <!-- Dal Options -->
+                <div class="custom-group">
+                    <label>Dal</label>
+                    <select class="custom-select" id="custom-dal" onchange="calculateEstimate()">
+                        <option value="Regular Dal" data-price="0">Regular Dal</option>
+                        <option value="Plain Dal" data-price="7">Plain Dal</option>
+                        <option value="Dal Tadka" data-price="7">Dal Tadka</option>
+                        <option value="Dal Fry" data-price="7">Dal Fry</option>
+                    </select>
+                </div>
+
+                <!-- Sabji Options -->
+                <div class="custom-group">
+                    <label>Sabji</label>
+                    <select class="custom-select" id="custom-sabji" onchange="calculateEstimate()">
+                        <option value="Regular Sabji" data-price="0">Regular Sabji</option>
+                        <option value="Chole" data-price="10">Chole</option>
+                        <option value="Paneer" data-price="15">Paneer</option>
+                        <option value="Mushroom" data-price="20">Mushroom</option>
+                    </select>
+                </div>
+
+                <!-- Roti Options with Qty -->
+                <div class="custom-group">
+                    <label>Breads (Type & Qty)</label>
+                    <div style="display: flex; gap: 10px;">
+                        <select class="custom-select" id="custom-roti" style="flex: 1;" onchange="calculateEstimate()">
+                            <option value="Regular Phulka" data-price="12">Regular Phulka</option>
+                            <option value="Butter Phulka" data-price="15">Butter Phulka</option>
+                            <option value="Triangle Paratha" data-price="15">Triangle Paratha</option>
+                            <option value="Aloo Paratha" data-price="49">Aloo Paratha</option>
+                            <option value="Pyaaz Paratha" data-price="59">Pyaaz Paratha</option>
+                            <option value="Paneer Paratha" data-price="69">Paneer Paratha</option>
+                        </select>
+                        <select class="custom-select" id="custom-roti-qty" style="width: 70px;" onchange="calculateEstimate()">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3" selected>3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Beverages/Sides -->
+                <div class="custom-group">
+                    <label>Curd & Beverages</label>
+                    <select class="custom-select" id="custom-curd" onchange="calculateEstimate()">
+                        <option value="None" data-price="0">None</option>
+                        <option value="Chaas" data-price="10">Chaas</option>
+                        <option value="Curd" data-price="15">Curd</option>
+                        <option value="Lassi" data-price="20">Lassi</option>
+                    </select>
+                </div>
+
+                <!-- Sweets -->
+                <div class="custom-group">
+                    <label>Dessert</label>
+                    <select class="custom-select" id="custom-sweet" onchange="calculateEstimate()">
+                        <option value="None" data-price="0">None</option>
+                        <option value="Regular Sweet" data-price="10">Regular Sweet</option>
+                    </select>
+                </div>
+
+                <!-- Delivery Address Box for Custom Plan -->
+                <div class="custom-group" style="grid-column: 1 / -1; margin-top: 10px;">
+                    <label>Delivery Address (Optional)</label>
+                    <textarea id="custom-address" class="custom-select" rows="2" placeholder="Enter your address so we can confirm your delivery distance..."></textarea>
+                </div>
+            </div>
+
+            <!-- Live Estimation Box -->
+            <div class="estimation-box">
+                <h3 style="font-family: var(--font-heading); font-size: 1.6rem; color: var(--color-green-dark);">Live Plan Estimate</h3>
+                <div class="est-flex">
+                    <div class="est-item">
+                        <div class="est-title">Price Per Tiffin</div>
+                        <div class="est-price" id="calc-tiffin">₹0</div>
+                    </div>
+                    <div class="est-item">
+                        <div class="est-title">1 Meal / Day (28 Days)</div>
+                        <div class="est-price" id="calc-month-1">₹0</div>
+                    </div>
+                    <div class="est-item">
+                        <div class="est-title">2 Meals / Day (28 Days)</div>
+                        <div class="est-price" id="calc-month-2" style="color: var(--color-green-dark);">₹0</div>
+                        <div class="est-discount-note">Includes 5.45% discount</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button onclick="sendCustomPlan()" class="btn btn-primary" style="padding: 16px 40px; font-size: 1.2rem;">Send Custom Plan via WhatsApp</button>
+            </div>
         </div>
     </section>
 
-    <div id="cart-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Your Order</h2>
-                <button class="close-btn" onclick="closeCartModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <div id="cart-items-container"></div>
-                <div style="margin-top: 24px; padding-top: 16px; border-top: 2px dashed #ddd; display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="font-size: 1.4rem;">Total:</h3>
-                    <h3 style="font-size: 1.8rem; color: var(--color-green-dark);" id="cart-modal-total">₹0</h3>
-                </div>
-                <p id="cart-warning" style="color: var(--color-maroon); font-size: 0.95rem; margin-top: 12px; display: none; font-weight: 700;">* Minimum order is ₹200 when purchasing snacks. Please add more items.</p>
-            </div>
-            <div class="modal-footer" style="margin-top: 24px;">
-                <button class="btn btn-primary" style="width: 100%; background-color: var(--color-whatsapp); color: white; border: none;" onclick="checkoutCart()">Checkout via WhatsApp</button>
-            </div>
-        </div>
-    </div>
-
-    <div id="floating-cart" class="floating-cart" onclick="openCartModal()">
-        <div class="cart-icon">🛒 <span id="cart-qty" class="cart-badge">0</span></div>
-        <div class="cart-info">View Cart <span id="cart-total">₹0</span></div>
-    </div>
-    
-    <div id="toast" class="toast">Added to cart!</div>
-
-    <div id="bulk-modal" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Bulk Order Generator</h2>
-                <button class="close-btn" onclick="closeBulkModal()">&times;</button>
-            </div>
-            <div class="modal-body">
-                <p style="color: #555; margin-bottom: 16px;">Select items and quantities for your party or office event. We will prepare everything fresh!</p>
-                <div id="bulk-rows-container"></div>
-                <button class="btn btn-outline" style="width: 100%; margin-top: 12px; padding: 10px;" onclick="addBulkRow()">+ Add Another Item</button>
-                <div style="margin-top: 24px; padding-top: 16px; border-top: 2px dashed #ddd; display: flex; justify-content: space-between; align-items: center;">
-                    <h3 style="font-size: 1.4rem;">Estimated Total:</h3>
-                    <h3 style="font-size: 1.8rem; color: var(--color-green-dark);" id="bulk-total-price">₹0</h3>
-                </div>
-            </div>
-            <div class="modal-footer" style="margin-top: 24px;">
-                <button class="btn btn-primary" style="width: 100%; background-color: var(--color-whatsapp); color: white; border: none;" onclick="sendBulkOrder()">Send Order via WhatsApp</button>
-            </div>
-        </div>
-    </div>
-
+    <!-- Footer -->
     <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
-            <!-- UPDATED FOOTER LOGO -->
-            <img src="images/PRAYAGRAJ%20HOTEL.JPG" alt="Prayagraj Hotel Logo" style="height: 90px; width: auto; object-fit: contain; border-radius: 10px; margin-bottom: 16px;">
+            <img src="images/PRAYAGRAJ%20HOTEL.png" alt="Prayagraj Hotel Logo" style="height: 90px; width: auto; object-fit: contain; border-radius: 10px; margin-bottom: 16px;">
             <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>
             <p style="color: #aaa; font-size: 0.9rem;">526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu</p>
             <p style="margin-top: 32px; color: #666; font-size: 0.8rem;">© 2026 Eat Hub. All rights reserved.</p>
         </div>
     </footer>
 
-    <a href="tel:+919737786796" class="floating-call">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
-    </a>
+    <!-- Scripts -->
+    <script>
+        // --- Manual Address Check ---
+        function checkManualAddress() {
+            let addr = document.getElementById('manual-address').value;
+            if (!addr) {
+                alert('Please enter your address first!');
+                return;
+            }
+            let msg = `Hi! I want to subscribe to a tiffin plan. Can you please confirm if you deliver to this address and if there are any delivery charges?\n\n📍 *Address:* ${addr}`;
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(msg)}`, '_blank');
+        }
 
-    <a href="https://wa.me/919737786796?text=Hi!%20I%20have%20an%20inquiry." target="_blank" class="floating-wa">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-    </a>
+        // --- Order Standard Plans ---
+        function orderMini() {
+            let msg = `Hi! I am interested in subscribing to the Mini Tiffin Plan.`;
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(msg)}`, '_blank');
+        }
 
+        function orderRegular() {
+            let bread = document.getElementById('reg-bread').value;
+            let side = document.getElementById('reg-side').value;
+            let msg = `Hi! I am interested in subscribing to the Regular Thali Plan.\n\nMy Choices:\n▪ Bread: ${bread}\n▪ Side: ${side}`;
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function orderPremium() {
+            let bread = document.getElementById('prem-bread').value;
+            let side = document.getElementById('prem-side').value;
+            let msg = `Hi! I am interested in subscribing to the Premium Thali Plan.\n\nMy Choices:\n▪ Bread: ${bread}\n▪ Side: ${side}`;
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // --- Live Calculator Logic ---
+        function calculateEstimate() {
+            // Base price covers Regular Rice, Dal, and Sabji (Breads calculated separately)
+            const basePrice = 60; 
+
+            // Get selected options
+            const riceOpt = document.getElementById('custom-rice').options[document.getElementById('custom-rice').selectedIndex];
+            const dalOpt = document.getElementById('custom-dal').options[document.getElementById('custom-dal').selectedIndex];
+            const sabjiOpt = document.getElementById('custom-sabji').options[document.getElementById('custom-sabji').selectedIndex];
+            
+            const rotiOpt = document.getElementById('custom-roti').options[document.getElementById('custom-roti').selectedIndex];
+            const rotiQty = parseInt(document.getElementById('custom-roti-qty').value);
+            
+            const curdOpt = document.getElementById('custom-curd').options[document.getElementById('custom-curd').selectedIndex];
+            const sweetOpt = document.getElementById('custom-sweet').options[document.getElementById('custom-sweet').selectedIndex];
+
+            // Extract exact add-on pricing data
+            const priceRice = parseInt(riceOpt.getAttribute('data-price'));
+            const priceDal = parseInt(dalOpt.getAttribute('data-price'));
+            const priceSabji = parseInt(sabjiOpt.getAttribute('data-price'));
+            const priceRoti = parseInt(rotiOpt.getAttribute('data-price'));
+            const priceCurd = parseInt(curdOpt.getAttribute('data-price'));
+            const priceSweet = parseInt(sweetOpt.getAttribute('data-price'));
+
+            // Math
+            const totalBreadCost = priceRoti * rotiQty;
+            const perTiffinPrice = basePrice + priceRice + priceDal + priceSabji + totalBreadCost + priceCurd + priceSweet;
+            
+            const monthlyOneMeal = perTiffinPrice * 28;
+            
+            // Applies 5.45% discount and rounds to the nearest whole number
+            const monthlyTwoMeals = Math.round((perTiffinPrice * 28 * 2) * (1 - 0.0545)); 
+
+            // Update UI
+            document.getElementById('calc-tiffin').innerText = `₹${perTiffinPrice}`;
+            document.getElementById('calc-month-1').innerText = `₹${monthlyOneMeal.toLocaleString('en-IN')}`;
+            document.getElementById('calc-month-2').innerText = `₹${monthlyTwoMeals.toLocaleString('en-IN')}`;
+        }
+
+        // Run calculator immediately when the page loads to show initial price
+        document.addEventListener("DOMContentLoaded", calculateEstimate);
+
+        // --- Send Custom Plan to WhatsApp ---
+        function sendCustomPlan() {
+            const rice = document.getElementById('custom-rice').value;
+            const dal = document.getElementById('custom-dal').value;
+            const sabji = document.getElementById('custom-sabji').value;
+            const roti = document.getElementById('custom-roti').value;
+            const rotiQty = document.getElementById('custom-roti-qty').value;
+            const curd = document.getElementById('custom-curd').value;
+            const sweet = document.getElementById('custom-sweet').value;
+            const address = document.getElementById('custom-address').value;
+
+            // Grab the live calculated prices to send to WhatsApp too!
+            const tiffinPrice = document.getElementById('calc-tiffin').innerText;
+            const month1 = document.getElementById('calc-month-1').innerText;
+            const month2 = document.getElementById('calc-month-2').innerText;
+
+            let message = `Hi! I would like to subscribe to a Custom Monthly Tiffin Plan.\n\nHere are my selections:\n`;
+            message += `▪ Rice: ${rice}\n`;
+            message += `▪ Dal: ${dal}\n`;
+            message += `▪ Sabji: ${sabji}\n`;
+            message += `▪ Breads: ${rotiQty} x ${roti}\n`;
+            message += `▪ Side/Beverage: ${curd}\n`;
+            message += `▪ Sweet: ${sweet}\n\n`;
+            
+            if (address.trim() !== "") {
+                message += `📍 *Delivery Address:*\n${address}\n\n`;
+            }
+
+            message += `*My Website Estimate:*\n- Per Tiffin: ${tiffinPrice}\n- 1 Meal/Day: ${month1}\n- 2 Meals/Day: ${month2}\n\nPlease confirm my plan!`;
+
+            window.open(`https://wa.me/919737786796?text=${encodeURIComponent(message)}`, '_blank');
+        }
+    </script>
+    
+    <!-- We initialize the GPS checker from app.js here just like on index.html -->
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>

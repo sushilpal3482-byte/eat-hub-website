@@ -13,13 +13,19 @@
             <a href="index.html">
                 <img src="images/EATHUB%20LOGO.png" alt="Eat Hub Logo" style="height: 100px; width: auto; object-fit: contain;">
             </a>
-            <div class="nav-links">
+           <div class="nav-links">
                 <a href="index.html">Home</a>
-                <a href="menu.html" style="color: var(--color-green);">Menu</a>
+                <a href="menu.html">Menu</a>
+                <a href="plans.html">Plans</a>
                 <a href="about.html">About</a>
                 <a href="contact.html">Contact</a>
             </div>
-            <div class="status-pill" id="live-status">Loading Status...</div>
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div class="status-pill" id="live-status">Loading Status...</div>
+                <button id="dark-mode-toggle" class="dark-mode-btn" title="Toggle Dark Mode">
+                    <span id="theme-icon">🌙</span>
+                </button>
+            </div>
         </div>
     </nav>
 

@@ -380,3 +380,35 @@ document.addEventListener('DOMContentLoaded', () => {
     initOffersScroll(); 
     initSlider(); // Added slider initialization
 });
+
+// --- DARK MODE LOGIC ---
+function initDarkMode() {
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+    const icon = document.getElementById('theme-icon');
+    if (!toggleBtn) return;
+
+    // Check if the user previously chose dark mode
+    const savedTheme = localStorage.getItem('eatHubTheme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        icon.textContent = '☀️'; // Show sun icon when in dark mode
+    }
+
+    // Toggle function
+    toggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('eatHubTheme', 'dark'); // Save preference
+            icon.textContent = '☀️';
+        } else {
+            localStorage.setItem('eatHubTheme', 'light'); // Save preference
+            icon.textContent = '🌙';
+        }
+    });
+}
+
+// Ensure initDarkMode runs when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    initDarkMode();
+});

@@ -53,8 +53,8 @@ section { padding: 60px 0; }
 }
 .logo-hub {
     font-family: 'Nunito', sans-serif;
-    font-weight: 700; 
-    font-size: 2.6rem;
+    font-weight: 900; 
+    font-size: 2.7rem;
     line-height: 0.8;
     color: #000000 !important; /* Pure Black */
     letter-spacing: 1px;
@@ -67,9 +67,7 @@ section { padding: 60px 0; }
     letter-spacing: 2px;
     margin-top: 8px;
 }
-.logo-tagline .dot {
-    color: #4C7A2E !important; /* Green dots */
-}
+
 
 /* --- BADGES & BUTTONS --- */
 .status-pill { background-color: var(--color-green-tint); color: var(--color-green-dark); padding: 6px 16px; border-radius: var(--radius-pill); font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); }

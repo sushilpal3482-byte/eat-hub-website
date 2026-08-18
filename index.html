@@ -1,552 +1,279 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Eat Hub | Fresh & Tasty</title>
-
     <meta name="description" content="Ghar Jaisa Khana in Khadoli & Khanvel. Budget-friendly, everyday food since 2003.">
-
     <link rel="stylesheet" href="styles.css">
-
 </head>
-
 <body>
-
-    <!-- Navigation Bar (Updated with 'Plans' link) -->
-
+    <!-- Top Navigation Bar -->
     <nav class="navbar">
-
         <div class="container nav-container">
-
             <a href="index.html">
-
                 <img src="images/EATHUB%20LOGO.png" alt="Eat Hub Logo" style="height: 100px; width: auto; object-fit: contain;">
-
             </a>
-
             <div class="nav-links">
-
                 <a href="index.html">Home</a>
-
                 <a href="menu.html">Menu</a>
-
                 <a href="plans.html">Plans</a>
-
                 <a href="about.html">About</a>
-
                 <a href="contact.html">Contact</a>
-
             </div>
-
-            <div class="status-pill" id="live-status">Loading Status...</div>
-
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <div class="status-pill" id="live-status">Loading Status...</div>
+                <button id="dark-mode-toggle" class="dark-mode-btn" title="Toggle Dark Mode">
+                    <span id="theme-icon">🌙</span>
+                </button>
+            </div>
         </div>
-
     </nav>
-
-
 
     <div id="sunday-banner" style="display: none; background: var(--color-mustard); text-align: center; padding: 12px; font-weight: 700; font-family: var(--font-heading); font-size: 1.1rem;"></div>
 
-
-
     <!-- HERO SLIDER SECTION -->
-
     <section class="hero-slider bg-alt" style="padding-top: 40px; padding-bottom: 40px;">
-
       
-
       <!-- Slide 1: Main -->
-
       <div class="slide active container">
-
         <div class="slide-content">
-
           <span class="legacy-badge">Since 2003 · Formerly Prayagraj Hotel</span>
-
           <h1 style="font-size: 3rem; margin-bottom: 8px;">Ghar Jaisa Khana,<br>Ab Ek Click Par.</h1>
-
           <h2 style="font-family: var(--font-body); font-weight: 500; font-size: 1.5rem; color: #555; margin-bottom: 24px;">घर जैसा खाना, अब एक क्लिक पर।</h2>
-
           <p style="margin-bottom: 32px; font-size: 1.1rem;">Fresh, home-style North Indian meals delivered across Khadoli, Khanvel, and Rakholi. No platform commissions, just honest food.</p>
-
           <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-
             <button onclick="document.getElementById('delivery-section').scrollIntoView({behavior: 'smooth'})" class="btn btn-primary">Check Delivery</button>
-
             <a href="menu.html" class="btn btn-outline">View Full Menu</a>
-
           </div>
-
         </div>
-
         <div class="slide-image">
-
           <img src="images/VEG%20THALI.jpeg" alt="North Indian Thali" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
-
         </div>
-
       </div>
-
-
 
       <!-- Slide 2: Bulk Order -->
-
       <div class="slide container">
-
         <div class="slide-content">
-
           <span class="legacy-badge" style="background: #8C99A8; color: white;">Bulk Orders & Catering</span>
-
           <h1 style="font-size: 3rem; margin-bottom: 8px;">Big Gatherings?<br>We’ve Got You Covered.</h1>
-
           <h2 style="font-family: var(--font-body); font-weight: 500; font-size: 1.5rem; color: #555; margin-bottom: 24px;">पार्टी हो या ऑफिस, खाना हमेशा बेहतरीन।</h2>
-
           <p style="margin-bottom: 32px; font-size: 1.1rem;">Order in bulk anytime, anywhere. Perfect for corporate meetings, family events, and parties. Enjoy special discounts on large orders.</p>
-
           <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-
             <button onclick="openBulkModal()" class="btn btn-primary">Order in Bulk</button>
-
             <a href="tel:+919737786796" class="btn btn-outline">Call for Catering</a>
-
           </div>
-
         </div>
-
         <div class="slide-image">
-
           <img src="images/SAMOSA%20BUCKET.png" alt="Bulk Catering Orders" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
-
         </div>
-
       </div>
-
-
 
       <!-- Slide 3: No Commissions -->
-
       <div class="slide container">
-
         <div class="slide-content">
-
           <span class="legacy-badge" style="background: #14532d; color: white;">Order Direct, Save More</span>
-
           <h1 style="font-size: 3rem; margin-bottom: 8px;">No Hidden Fees.<br>Just Honest Prices.</h1>
-
           <h2 style="font-family: var(--font-body); font-weight: 500; font-size: 1.5rem; color: #555; margin-bottom: 24px;">बिना किसी एक्स्ट्रा चार्ज के, सीधा आपके घर।</h2>
-
           <p style="margin-bottom: 32px; font-size: 1.1rem;">Why pay extra on aggregator apps? Order directly through our platform to get the absolute best prices, larger portions, and priority delivery.</p>
-
           <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-
             <a href="menu.html" class="btn btn-primary">Order Direct Now</a>
-
           </div>
-
         </div>
-
         <div class="slide-image">
-
           <img src="images/PANEER.jpeg" alt="Direct Delivery" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
-
         </div>
-
       </div>
-
-
 
       <!-- Slide 4: Daily Meals -->
-
       <div class="slide container">
-
         <div class="slide-content">
-
           <span class="legacy-badge">Daily Meal Subscriptions</span>
-
           <h1 style="font-size: 3rem; margin-bottom: 8px;">Everyday Meals,<br>Sorted for the Month.</h1>
-
           <h2 style="font-family: var(--font-body); font-weight: 500; font-size: 1.5rem; color: #555; margin-bottom: 24px;">रोज़ का खाना, अब हमारी ज़िम्मेदारी।</h2>
-
           <p style="margin-bottom: 32px; font-size: 1.1rem;">Missing home food? Subscribe to our monthly tiffin service. Wholesome, varied, and nutritious meals delivered fresh to you every day.</p>
-
           <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-
-            <!-- Updated link to plans.html -->
-
             <a href="plans.html" class="btn btn-primary">View Meal Plans</a>
-
           </div>
-
         </div>
-
         <div class="slide-image">
-
           <img src="images/DAL-RICE%20BOWL.jpeg" alt="Tiffin Service" style="width: 100%; max-width: 450px; border-radius: var(--radius-lg); box-shadow: var(--shadow-hover); object-fit: cover;">
-
         </div>
-
       </div>
-
-
 
       <!-- Slider Indicators (Dots) -->
-
       <div class="slider-dots" style="width: 100%; text-align: center; margin-top: 30px;">
-
         <span class="dot active" onclick="currentSlide(1)"></span>
-
         <span class="dot" onclick="currentSlide(2)"></span>
-
         <span class="dot" onclick="currentSlide(3)"></span>
-
         <span class="dot" onclick="currentSlide(4)"></span>
-
       </div>
 
-
-
     </section>
-
-
-
-    <!-- Rest of your original page -->
 
     <section class="offers-section">
-
         <div class="container">
-
             <div class="offers-header">
-
                 <h2>Top offers today</h2>
-
                 <div class="scroll-arrows">
-
                     <button class="arrow-btn" id="scroll-left">‹</button>
-
                     <button class="arrow-btn" id="scroll-right">›</button>
-
                 </div>
-
             </div>
-
             
-
             <div class="offers-track-container">
-
                 <div class="offers-track" id="offers-track">
-
                     <a href="menu.html" class="offer-card">
-
                         <div class="offer-title">THALI</div>
-
                         <div class="offer-price">₹149</div>
-
                         <div class="offer-image-container">
-
                             <img src="images/VEG%20THALI.jpeg" alt="Thali">
-
                         </div>
-
                     </a>
-
                     
-
                     <a href="menu.html" class="offer-card">
-
                         <div class="offer-title">SNACK</div>
-
                         <div class="offer-price">₹15</div>
-
                         <div class="offer-image-container">
-
                             <img src="images/SAMOSA%20BUCKET.png" alt="Samosa Bucket">
-
                         </div>
-
                     </a>
-
                     
-
                     <a href="menu.html" class="offer-card">
-
                         <div class="offer-title">BOWL</div>
-
                         <div class="offer-price">₹59</div>
-
                         <div class="offer-image-container">
-
                             <img src="images/DAL-RICE%20BOWL.jpeg" alt="Dal Rice Bowl">
-
                         </div>
-
                     </a>
-
-
 
                     <a href="menu.html" class="offer-card">
-
                         <div class="offer-title">PANEER</div>
-
                         <div class="offer-price">₹169</div>
-
                         <div class="offer-image-container">
-
                             <img src="images/PANEER.jpeg" alt="Paneer Thali">
-
                         </div>
-
                     </a>
-
-
 
                     <div onclick="openBulkModal()" class="offer-card-promo" style="background-color: #8C99A8; color: white; text-align: center; cursor: pointer;">
-
                         <div>
-
                             <div style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 800; line-height: 1.1; margin-top: 10px;">BULK<br>ORDER</div>
-
                             <div style="font-size: 0.85rem; font-weight: 600; margin-top: 8px;">For Parties</div>
-
                         </div>
-
                         <div style="background: #6C7A89; border-radius: 8px; padding: 6px; font-weight: 700; font-size: 1rem;">CREATE</div>
-
                     </div>
 
-
-
                     <a href="menu.html" class="offer-card-promo" style="background-color: #D3D8E0; color: #444; text-align: center;">
-
                         <div>
-
                             <div style="font-family: var(--font-heading); font-size: 1.2rem; font-weight: 800; line-height: 1.1; margin-top: 10px;">KHADOLI<br>SPECIAL</div>
-
                         </div>
-
                         <img src="https://cdn-icons-png.flaticon.com/512/2830/2830305.png" style="width: 50px; margin: 0 auto;">
-
                         <div style="color: #6C7A89; font-weight: 700; font-size: 0.9rem;">Free Delivery</div>
-
                     </a>
-
                 </div>
-
             </div>
-
             <p style="text-align: right; font-size: 0.85rem; color: #777; margin-top: 8px;">*Minimum order for morning/evening snacks is ₹200.</p>
-
         </div>
-
     </section>
-
-
 
     <section id="delivery-section" class="container">
-
         <h2 style="text-align: center; margin-bottom: 32px; font-size: 2.2rem;">Delivery Zones</h2>
-
         <div style="background: white; padding: 40px 24px; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); text-align: center; max-width: 800px; margin: 0 auto;">
-
             <p style="margin-bottom: 24px; font-size: 1.1rem;">Click below to check your exact delivery fee based on your location. We deliver up to 7km from Khadoli.</p>
-
             <button id="check-location-btn" class="btn btn-primary">📍 Use My Current Location</button>
-
             <div id="location-result" style="margin-top: 24px; font-weight: 600; font-size: 1.2rem; color: var(--color-green-dark);"></div>
-
             
-
             <div style="display: flex; justify-content: center; gap: 24px; margin-top: 40px; flex-wrap: wrap;">
-
                 <div style="background: var(--color-bg-alt); padding: 20px; border-radius: var(--radius-md); width: 220px;">
-
                     <h3 style="margin-bottom: 4px;">Khadoli</h3>
-
                     <p style="font-size: 0.9rem; color: #555;">Industrial Area<br><strong>Free Delivery</strong></p>
-
                 </div>
-
                 <div style="background: var(--color-bg-alt); padding: 20px; border-radius: var(--radius-md); width: 220px;">
-
                     <h3 style="margin-bottom: 4px;">Khanvel</h3>
-
                     <p style="font-size: 0.9rem; color: #555;">Residential Area<br><strong>Distance Fee over 5km</strong></p>
-
                 </div>
-
                 <div style="background: var(--color-bg-alt); padding: 20px; border-radius: var(--radius-md); width: 220px;">
-
                     <h3 style="margin-bottom: 4px;">Rakholi</h3>
-
                     <p style="font-size: 0.9rem; color: #555;">Mixed Zone<br><strong>Check distance for fee</strong></p>
-
                 </div>
-
             </div>
-
         </div>
-
     </section>
-
-
 
     <section class="bg-alt">
-
         <div class="container">
-
             <h2 style="text-align: center; margin-bottom: 8px; font-size: 2.2rem;">Today's Lunch Thali</h2>
-
             <p style="text-align: center; margin-bottom: 32px; color: #555;">Bestsellers straight from our family kitchen</p>
-
             <div id="featured-menu" class="menu-grid"></div>
-
         </div>
-
     </section>
 
-
-
     <div id="cart-modal" class="modal-overlay">
-
         <div class="modal-content">
-
             <div class="modal-header">
-
                 <h2>Your Order</h2>
-
                 <button class="close-btn" onclick="closeCartModal()">&times;</button>
-
             </div>
-
             <div class="modal-body">
-
                 <div id="cart-items-container"></div>
-
                 <div style="margin-top: 24px; padding-top: 16px; border-top: 2px dashed #ddd; display: flex; justify-content: space-between; align-items: center;">
-
                     <h3 style="font-size: 1.4rem;">Total:</h3>
-
                     <h3 style="font-size: 1.8rem; color: var(--color-green-dark);" id="cart-modal-total">₹0</h3>
-
                 </div>
-
                 <p id="cart-warning" style="color: var(--color-maroon); font-size: 0.95rem; margin-top: 12px; display: none; font-weight: 700;">* Minimum order is ₹200 when purchasing snacks. Please add more items.</p>
-
             </div>
-
             <div class="modal-footer" style="margin-top: 24px;">
-
                 <button class="btn btn-primary" style="width: 100%; background-color: var(--color-whatsapp); color: white; border: none;" onclick="checkoutCart()">Checkout via WhatsApp</button>
-
             </div>
-
         </div>
-
     </div>
-
-
 
     <div id="floating-cart" class="floating-cart" onclick="openCartModal()">
-
         <div class="cart-icon">🛒 <span id="cart-qty" class="cart-badge">0</span></div>
-
         <div class="cart-info">View Cart <span id="cart-total">₹0</span></div>
-
     </div>
-
     
-
     <div id="toast" class="toast">Added to cart!</div>
 
-
-
     <div id="bulk-modal" class="modal-overlay">
-
         <div class="modal-content">
-
             <div class="modal-header">
-
                 <h2>Bulk Order Generator</h2>
-
                 <button class="close-btn" onclick="closeBulkModal()">&times;</button>
-
             </div>
-
             <div class="modal-body">
-
                 <p style="color: #555; margin-bottom: 16px;">Select items and quantities for your party or office event. We will prepare everything fresh!</p>
-
                 <div id="bulk-rows-container"></div>
-
                 <button class="btn btn-outline" style="width: 100%; margin-top: 12px; padding: 10px;" onclick="addBulkRow()">+ Add Another Item</button>
-
                 <div style="margin-top: 24px; padding-top: 16px; border-top: 2px dashed #ddd; display: flex; justify-content: space-between; align-items: center;">
-
                     <h3 style="font-size: 1.4rem;">Estimated Total:</h3>
-
                     <h3 style="font-size: 1.8rem; color: var(--color-green-dark);" id="bulk-total-price">₹0</h3>
-
                 </div>
-
             </div>
-
             <div class="modal-footer" style="margin-top: 24px;">
-
                 <button class="btn btn-primary" style="width: 100%; background-color: var(--color-whatsapp); color: white; border: none;" onclick="sendBulkOrder()">Send Order via WhatsApp</button>
-
             </div>
-
         </div>
-
     </div>
 
-
-
    <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
-
         <div class="container">
-
             <img src="images/PRAYAGRAJ%20HOTEL.png" alt="Prayagraj Hotel Logo" style="height: 90px; width: auto; object-fit: contain; border-radius: 10px; margin-bottom: 16px;">
-
             <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>
-
             <p style="color: #aaa; font-size: 0.9rem;">526J+C2 Khadoli, Dadra and Nagar Haveli and Daman and Diu</p>
-
             <p style="margin-top: 32px; color: #666; font-size: 0.8rem;">© 2026 Eat Hub. All rights reserved.</p>
-
         </div>
-
     </footer>
 
-
-
     <a href="tel:+919737786796" class="floating-call">
-
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
-
     </a>
-
-
 
     <a href="https://wa.me/919737786796?text=Hi!%20I%20have%20an%20inquiry." target="_blank" class="floating-wa">
-
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
-
     </a>
 
-
-
     <script src="data.js"></script>
-
     <script src="app.js"></script>
-
 </body>
-
-</html> 
-
+</html>

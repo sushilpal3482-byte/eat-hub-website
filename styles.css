@@ -207,44 +207,54 @@ body.dark-mode .navbar {
 }
 body.dark-mode .nav-links a { color: #F5F5F5; }
 body.dark-mode .nav-links a:hover { color: var(--color-mustard); }
-body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 { color: #FFFFFF; }
-body.dark-mode p, body.dark-mode .item-desc, body.dark-mode .price-label, body.dark-mode .plan-features li { color: #BBBBBB; }
 
-/* Cards & Modals - Using !important to override inline HTML styles */
+/* FIX 1: Make the navbar logo transparent and white in dark mode */
+body.dark-mode .navbar img { 
+    filter: invert(1);
+    mix-blend-mode: screen;
+}
+
+/* FIX 2: Catch ALL white backgrounds across Contact, About, Menu, etc. */
 body.dark-mode .menu-card, 
 body.dark-mode .pricing-card, 
 body.dark-mode .custom-container, 
 body.dark-mode .modal-content, 
 body.dark-mode .offer-card, 
-body.dark-mode #delivery-section > div {
+body.dark-mode .feedback-card,
+body.dark-mode [style*="background: white"],
+body.dark-mode [style*="background-color: white"] {
     background: #1E1E1E !important; 
     border-color: #333 !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
 }
 body.dark-mode .card-compartment { border-bottom: 4px solid #1E1E1E !important; }
 
-/* Force text colors to update even if they have inline styles in the HTML */
-body.dark-mode #delivery-section p,
-body.dark-mode .custom-section p,
-body.dark-mode .pricing-header p {
-    color: #BBBBBB !important;
+/* Force all headings and text to update perfectly everywhere */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4,
+body.dark-mode strong { 
+    color: #FFFFFF !important; 
 }
 
-body.dark-mode #delivery-section h2,
-body.dark-mode #delivery-section h3,
-body.dark-mode .custom-container h2 {
-    color: #FFFFFF !important;
+body.dark-mode p, 
+body.dark-mode .item-desc, 
+body.dark-mode .price-label, 
+body.dark-mode .plan-features li { 
+    color: #BBBBBB !important; 
 }
 
+/* Update inputs, textareas, and dropdowns */
 body.dark-mode .custom-select, 
 body.dark-mode .card-select, 
 body.dark-mode #global-address,
 body.dark-mode #manual-address,
 body.dark-mode .bulk-select,
 body.dark-mode .bulk-qty {
-    background-color: #2D3748;
-    color: #F5F5F5;
-    border-color: #4A5568;
+    background-color: #2D3748 !important;
+    color: #F5F5F5 !important;
+    border-color: #4A5568 !important;
 }
 
 body.dark-mode .pricing-card.popular,
@@ -252,5 +262,5 @@ body.dark-mode .estimation-box {
     background-color: #25231c !important; 
     border-color: var(--color-mustard) !important;
 }
-body.dark-mode .price-toggle-box { background-color: #2D3748; border-color: #4A5568; }
-body.dark-mode .price-value, body.dark-mode .est-price { color: var(--color-mustard); }
+body.dark-mode .price-toggle-box { background-color: #2D3748 !important; border-color: #4A5568 !important; }
+body.dark-mode .price-value, body.dark-mode .est-price { color: var(--color-mustard) !important; }

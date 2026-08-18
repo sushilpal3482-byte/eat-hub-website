@@ -55,7 +55,7 @@ section { padding: 60px 0; }
     font-family: var(--font-body);
     font-size: 0.65rem;
     font-weight: 800;
-    color: #FFFFFF !important; /* Sets tagline to white as requested */
+    color: #000000 !important; /* Sets tagline to white as requested */
     letter-spacing: 1.5px;
     margin-top: 6px;
 }

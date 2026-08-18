@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Navigation Bar (Updated with 'Plans' link) -->
+    <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html">
@@ -88,7 +88,6 @@
           <h2 style="font-family: var(--font-body); font-weight: 500; font-size: 1.5rem; color: #555; margin-bottom: 24px;">रोज़ का खाना, अब हमारी ज़िम्मेदारी।</h2>
           <p style="margin-bottom: 32px; font-size: 1.1rem;">Missing home food? Subscribe to our monthly tiffin service. Wholesome, varied, and nutritious meals delivered fresh to you every day.</p>
           <div style="display: flex; gap: 16px; flex-wrap: wrap;">
-            <!-- Updated link to plans.html -->
             <a href="plans.html" class="btn btn-primary">View Meal Plans</a>
           </div>
         </div>
@@ -107,15 +106,19 @@
 
     </section>
 
-    <!-- Rest of your original page -->
-    <section class="offers-section">
+    <!-- Offers Section -->
+    <section class="offers-section" style="padding-top: 20px;">
         <div class="container">
-            <div class="offers-header">
-                <h2>Top offers today</h2>
-                <div class="scroll-arrows">
-                    <button class="arrow-btn" id="scroll-left">‹</button>
-                    <button class="arrow-btn" id="scroll-right">›</button>
-                </div>
+            
+            <!-- CENTERED ARROWS (Moved up near the dots, out of the right corner) -->
+            <div class="scroll-arrows" style="display: flex; justify-content: center; gap: 16px; margin-bottom: 24px;">
+                <button class="arrow-btn" id="scroll-left" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">‹</button>
+                <button class="arrow-btn" id="scroll-right" style="box-shadow: 0 2px 8px rgba(0,0,0,0.1);">›</button>
+            </div>
+
+            <!-- Centered Section Header -->
+            <div class="offers-header" style="justify-content: center; display: flex; margin-bottom: 20px;">
+                <h2 style="margin: 0;">Top offers today</h2>
             </div>
             
             <div class="offers-track-container">
@@ -205,6 +208,7 @@
         </div>
     </section>
 
+    <!-- Cart & Modals -->
     <div id="cart-modal" class="modal-overlay">
         <div class="modal-content">
             <div class="modal-header">
@@ -253,7 +257,7 @@
         </div>
     </div>
 
-   <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
+    <footer style="background-color: #1B1B18; color: white; padding: 60px 0 40px 0; text-align: center;">
         <div class="container">
             <img src="images/PRAYAGRAJ%20HOTEL.png" alt="Prayagraj Hotel Logo" style="height: 90px; width: auto; object-fit: contain; border-radius: 10px; margin-bottom: 16px;">
             <p style="color: #ccc; margin-bottom: 24px;">Fresh & Tasty · Formerly Prayagraj Hotel</p>

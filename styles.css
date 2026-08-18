@@ -210,21 +210,36 @@ body.dark-mode .nav-links a:hover { color: var(--color-mustard); }
 body.dark-mode h1, body.dark-mode h2, body.dark-mode h3 { color: #FFFFFF; }
 body.dark-mode p, body.dark-mode .item-desc, body.dark-mode .price-label, body.dark-mode .plan-features li { color: #BBBBBB; }
 
+/* Cards & Modals - Using !important to override inline HTML styles */
 body.dark-mode .menu-card, 
 body.dark-mode .pricing-card, 
 body.dark-mode .custom-container, 
 body.dark-mode .modal-content, 
 body.dark-mode .offer-card, 
 body.dark-mode #delivery-section > div {
-    background-color: #1E1E1E;
-    border-color: #333;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    background: #1E1E1E !important; 
+    border-color: #333 !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
 }
-body.dark-mode .card-compartment { border-bottom: 4px solid #1E1E1E; }
+body.dark-mode .card-compartment { border-bottom: 4px solid #1E1E1E !important; }
+
+/* Force text colors to update even if they have inline styles in the HTML */
+body.dark-mode #delivery-section p,
+body.dark-mode .custom-section p,
+body.dark-mode .pricing-header p {
+    color: #BBBBBB !important;
+}
+
+body.dark-mode #delivery-section h2,
+body.dark-mode #delivery-section h3,
+body.dark-mode .custom-container h2 {
+    color: #FFFFFF !important;
+}
 
 body.dark-mode .custom-select, 
 body.dark-mode .card-select, 
 body.dark-mode #global-address,
+body.dark-mode #manual-address,
 body.dark-mode .bulk-select,
 body.dark-mode .bulk-qty {
     background-color: #2D3748;
@@ -234,8 +249,8 @@ body.dark-mode .bulk-qty {
 
 body.dark-mode .pricing-card.popular,
 body.dark-mode .estimation-box {
-    background-color: #25231c; 
-    border-color: var(--color-mustard);
+    background-color: #25231c !important; 
+    border-color: var(--color-mustard) !important;
 }
 body.dark-mode .price-toggle-box { background-color: #2D3748; border-color: #4A5568; }
 body.dark-mode .price-value, body.dark-mode .est-price { color: var(--color-mustard); }

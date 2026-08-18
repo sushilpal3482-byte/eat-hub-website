@@ -264,3 +264,17 @@ body.dark-mode .estimation-box {
 }
 body.dark-mode .price-toggle-box { background-color: #2D3748 !important; border-color: #4A5568 !important; }
 body.dark-mode .price-value, body.dark-mode .est-price { color: var(--color-mustard) !important; }
+/* --- EXTRA DARK MODE FIXES --- */
+
+/* 1. Fix the logo box by forcing the off-white background to pure black before screening it */
+body.dark-mode .navbar img { 
+    filter: invert(1) contrast(3) !important;
+    mix-blend-mode: screen !important;
+}
+
+/* 2. Fix the blinding green backgrounds by overriding the variable when used as a background */
+body.dark-mode [style*="var(--color-green)"],
+body.dark-mode [style*="var(--color-green-dark)"] {
+    background: #1E1E1E !important;
+    background-color: #1E1E1E !important;
+}

@@ -270,14 +270,14 @@ body.dark-mode [style*="var(--color-green-dark)"] {
     background: #1E1E1E !important;
     background-color: #1E1E1E !important;
 }
-/* --- FORCE ALL SECTION BACKGROUNDS DARK --- */
+/* --- FORCE ALL SECTION BACKGROUNDS TO A SOFTER DARK GREY --- */
 body.dark-mode,
 body.dark-mode section,
 body.dark-mode .custom-section,
 body.dark-mode .pricing-section,
 body.dark-mode .offers-section,
 body.dark-mode .bg-alt {
-    background-color: #121212 !important;
-    background: #121212 !important;
-    border-color: #333 !important;
+    background-color: #222222 !important; /* Softer, matte dark grey */
+    background: #222222 !important;
+    border-color: #383838 !important;
 }

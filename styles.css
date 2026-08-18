@@ -48,18 +48,17 @@ section { padding: 60px 0; }
     font-weight: 900;
     font-size: 2.4rem;
     line-height: 0.85;
-    color: var(--color-black);
+    color: #000000 !important; /* Forces pure black, stops browser from turning it purple */
     letter-spacing: -1px;
 }
 .logo-tagline {
     font-family: var(--font-body);
     font-size: 0.65rem;
     font-weight: 800;
-    color: var(--color-green);
+    color: #FFFFFF !important; /* Sets tagline to white as requested */
     letter-spacing: 1.5px;
     margin-top: 6px;
 }
-
 /* --- BADGES & BUTTONS --- */
 .status-pill { background-color: var(--color-green-tint); color: var(--color-green-dark); padding: 6px 16px; border-radius: var(--radius-pill); font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); }
 .legacy-badge { display: inline-block; background-color: var(--color-maroon); color: white; padding: 4px 16px; border-radius: var(--radius-pill); font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; }

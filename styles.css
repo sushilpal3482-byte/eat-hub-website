@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Mukta:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Mukta:wght@400;500;600;700&family=Nunito:wght@400;700;900&display=swap');
 
 :root {
   var(--color-black): #1B1B18;
@@ -35,30 +35,42 @@ section { padding: 60px 0; }
 .nav-links a { text-decoration: none; color: #1B1B18; font-weight: 600; font-size: 1.1rem; transition: color 0.2s; }
 .nav-links a:hover { color: var(--color-green); }
 
-/* --- CSS TEXT LOGO --- */
+/* --- CSS TEXT LOGO (ROUNDED FONT & COLORS) --- */
 .css-logo {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    padding: 8px 0;
+    padding: 4px 0;
 }
-.logo-main {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    font-weight: 900;
-    font-size: 2.4rem;
-    line-height: 0.85;
-    color: #000000 !important; /* Forces pure black, stops browser from turning it purple */
-    letter-spacing: -1px;
+.logo-eat {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900; 
+    font-size: 2.8rem;
+    line-height: 0.8;
+    color: #000000 !important; /* Pure Black */
+    letter-spacing: 0px;
+}
+.logo-hub {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400; 
+    font-size: 2.6rem;
+    line-height: 0.8;
+    color: #000000 !important; /* Pure Black */
+    letter-spacing: 1px;
 }
 .logo-tagline {
     font-family: var(--font-body);
-    font-size: 0.65rem;
-    font-weight: 800;
-    color: #000000 !important; /* Sets tagline to white as requested */
-    letter-spacing: 1.5px;
-    margin-top: 6px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #FFFFFF !important; /* White text */
+    letter-spacing: 2px;
+    margin-top: 8px;
 }
+.logo-tagline .dot {
+    color: #4C7A2E !important; /* Green dots */
+}
+
 /* --- BADGES & BUTTONS --- */
 .status-pill { background-color: var(--color-green-tint); color: var(--color-green-dark); padding: 6px 16px; border-radius: var(--radius-pill); font-size: 0.95rem; font-weight: 600; font-family: var(--font-body); }
 .legacy-badge { display: inline-block; background-color: var(--color-maroon); color: white; padding: 4px 16px; border-radius: var(--radius-pill); font-size: 0.9rem; font-weight: 600; margin-bottom: 16px; }
@@ -130,6 +142,9 @@ section { padding: 60px 0; }
 .offer-card-promo { flex: 0 0 auto; width: 140px; height: 180px; border-radius: 16px; display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; padding: 16px; transition: transform 0.2s; }
 .offer-card-promo:hover { transform: translateY(-4px); box-shadow: 0 8px 16px rgba(0,0,0,0.08); }
 
+/* --- CUSTOM SECTION --- */
+.custom-section { padding: 80px 20px; background-color: var(--color-bg-cream); border-top: 1px solid #eaeaea; }
+
 /* --- ABOUT REVIEWS --- */
 .feedback-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 32px; }
 .feedback-card { background: white; padding: 32px 24px; border-radius: var(--radius-md); box-shadow: var(--shadow-card); text-align: left; }
@@ -188,15 +203,18 @@ body.dark-mode .navbar {
 body.dark-mode .nav-links a { color: #F5F5F5; }
 body.dark-mode .nav-links a:hover { color: var(--color-mustard); }
 
-/* Dark Mode Logo Colors */
-body.dark-mode .logo-main {
+/* Dark Mode Logo Colors (Flips EAT HUB to white so it's visible on the dark navbar) */
+body.dark-mode .logo-eat,
+body.dark-mode .logo-hub {
     color: #FFFFFF !important;
 }
-body.dark-mode .logo-tagline {
-    color: var(--color-green-dark) !important; 
+
+/* Fix the glaring white backgrounds in Dark Mode */
+body.dark-mode .custom-section {
+    background-color: #121212 !important; 
+    border-top-color: #333 !important;
 }
 
-/* Catch ALL white backgrounds across Contact, About, Menu, etc. */
 body.dark-mode .menu-card, 
 body.dark-mode .pricing-card, 
 body.dark-mode .custom-container, 
